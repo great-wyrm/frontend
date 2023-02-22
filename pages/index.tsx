@@ -42,7 +42,7 @@ export default function Home() {
       <Flex 
         w='100vw'
         position='relative'
-        h={isBaseView ? 'calc(400px + 122 * (100vw -320px) / 768 )' : '66vw'}
+        h={isBaseView ? 'calc(400px + 0.16 * (100vw - 320px))' : '66vw'}
         maxH='962'
         bgSize='cover' 
         bgPosition='center'

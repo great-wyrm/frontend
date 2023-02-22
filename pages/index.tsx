@@ -96,7 +96,7 @@ export default function Home() {
 
           <Flex direction='column' py='40px' px={['20px', '20px', '40px', '120px', '182px']} gap='30px' borderRadius='30px' border='1px solid white' textAlign='center'>
             <Text fontWeight='700' fontSize={['24px', '30px', '30px']} lineHeight='120%'>True Open Gaming License</Text>
-            <Text>We value and support content creators. No corporate overlords collect taxes here. All the fees go to content creators, and to support the infrastructure behind the game.</Text>
+            <Text fontFamily='Inter'>We value and support content creators. No corporate overlords collect taxes here. All the fees go to content creators, and to support the infrastructure behind the game.</Text>
           </Flex>
 
           <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>

@@ -1,32 +1,3 @@
-function variantMenuButton() {
-  const c = 'orange'
-  return {
-    _focus: {
-      textDecoration: 'underline',
-    },
-    _disabled: {
-      bg: `${c}.200`,
-    },
-    _hover: {
-      bg: `${c}.500`,
-      // color: `${c}.100`,
-      _disabled: {
-        bg: `${c}.100`,
-      },
-    },
-  }
-  // _hover={{
-  //   backgroundColor: 'transparent',
-  //   color: '#F56646',
-  //   fontWeight: '700',
-  // }}
-  // _focus={{
-  //   backgroundColor: 'transparent',
-  //   color: '#F56646',
-  //   fontWeight: '700',
-  // }}
-}
-
 const variantOrangeGradient = () => {
   return {
     border: 'none',
@@ -92,18 +63,7 @@ const Button = {
     borderStyle: 'solid',
     fontWeight: '600',
     m: 0,
-    // m: 1,
-
-    // _active: {
-    //   bg: `${props.colorScheme}.${props.colorMode}.200`,
-    //   color: `${props.colorScheme}.${props.colorMode}.50`,
-    // },
-    // _focus: {
-    //   bg: `${props.colorScheme}.${props.colorMode}.400`,
-    //   color: `${props.colorScheme}.${props.colorMode}.50`,
-    // },
   }),
-  // 2. We can add a new button size or extend existing
   sizes: {
     xl: {
       h: 16,
@@ -114,7 +74,6 @@ const Button = {
   },
   // 3. We can add a new visual variant
   variants: {
-    menuButton: variantMenuButton,
     plainOrange: variantPlainOrange,
     orangeGradient: variantOrangeGradient,
     wyrmButton: variantWyrmButton,

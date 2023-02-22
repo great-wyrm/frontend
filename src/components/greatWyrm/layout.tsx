@@ -16,8 +16,6 @@ export default function Layout({ children }: { children: React.ReactNode; home?:
         <link rel='icon' 
           href='/favicon.png' //TODO
         /> 
-        <link href='https://fonts.googleapis.com/css?family=Cinzel&display=optional' rel='stylesheet' />
-        <link href='https://fonts.googleapis.com/css?family=Inter&display=optional' rel='stylesheet' />
         <meta
           name='description'
           content='The only player-owned role-playing game in the world. Great Wyrm players have full control of the world we all play in.'

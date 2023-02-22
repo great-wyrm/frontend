@@ -66,7 +66,7 @@ export default function Home() {
 
             <Flex flex='1' direction='column' gap={['20px', '20px', '40px']} textAlign={'center'} maxW='703px'>
               <Text fontWeight='700' fontSize={{base: '30px', sm:'40px', l: '50px'}} lineHeight='100%'>Enter the world of< br />Great Wyrm</Text>
-              <Text>The only player-owned role-playing game in the world. Great Wyrm players have full control of the world we all play in.</Text>
+              <Text fontFamily='Inter'>The only player-owned role-playing game in the world. Great Wyrm players have full control of the world we all play in.</Text>
               <Flex mt='20px' w={['100%']} direction={['column', 'row', 'row']} gap='20px' justifyContent='center' alignItems='center'>
                 <Button 
                   variant='wyrmButton'

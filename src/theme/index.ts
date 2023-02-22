@@ -24,11 +24,6 @@ const overrides = {
       },
     }),
   },
-  // fonts: {
-  //   heading: '"Space Grotesk", sans-serif',
-  //   body: '"Space Grotesk", sans-serif',
-  //   mono: '"Space Grotesk", monospace',
-  // },
   fontSizes: {
     xs: '0.625rem', //10px
     sm: '0.875rem', //14px

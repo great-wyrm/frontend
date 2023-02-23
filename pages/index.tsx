@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import { Button, Center, Flex, Image, Spacer, Text, useMediaQuery } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, Image, Spacer, Text, useMediaQuery } from '@chakra-ui/react'
 
 import Layout from '../src/components/greatWyrm/layout'
 import ImageFallback from '../src/components/greatWyrm/ImageFallback'
@@ -12,9 +12,19 @@ const assets = {
   coverLg: `${AWS_ASSETS_PATH}/great-wyrm-cover-lg.png`,
   coverSm: `${AWS_ASSETS_PATH}/great-wyrm-cover-sm.png`,
   coverMd: `${AWS_ASSETS_PATH}/great-wyrm-cover-md.png`,
-  logo: `${AWS_ASSETS_PATH}/great-wyrm-logo.png`
+  logo: `${AWS_ASSETS_PATH}/great-wyrm-logo.png`,
+  card1Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-1-sm.png`,
+  card1L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-1-l.png`,
+  card2Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-2-sm.png`,
+  card2L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-2-l.png`,
+  card3Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-3-sm.png`,
+  card3L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-3-l.png`,
+  card4Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-4-sm.png`,
+  card4L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-4-l.png`,
+
 
 }
+
 const gradient = 'linear-gradient(180deg, rgba(26, 29, 34, 0) 63.89%, rgba(26, 29, 34, 0.0100738) 69.1%, rgba(26, 29, 34, 0.0386868) 73.45%, rgba(26, 29, 34, 0.0834265) 77.06%, rgba(26, 29, 34, 0.14188) 80.01%, rgba(26, 29, 34, 0.211635) 82.42%, rgba(26, 29, 34, 0.290279) 84.4%, rgba(26, 29, 34, 0.3754) 86.05%, rgba(26, 29, 34, 0.464584) 87.47%, rgba(26, 29, 34, 0.555419) 88.78%, rgba(26, 29, 34, 0.645493) 90.07%, rgba(26, 29, 34, 0.732393) 91.45%, rgba(26, 29, 34, 0.813706) 93.03%, rgba(26, 29, 34, 0.88702) 94.91%, rgba(26, 29, 34, 0.949922) 97.2%, #1A1D22 100%)'
 
 
@@ -67,7 +77,7 @@ export default function Home() {
             <Flex flex='1' direction='column' gap={['20px', '20px', '40px']} textAlign={'center'} maxW='703px'>
               <Text fontWeight='700' fontSize={{base: '30px', sm:'40px', l: '50px'}} lineHeight='100%'>Enter the world of< br />Great Wyrm</Text>
               <Text fontFamily='Inter'>The only player-owned role-playing game in the world. Great Wyrm players have full control of the world we all play in.</Text>
-              <Flex mt='20px' w={['100%']} direction={['column', 'row', 'row']} gap='20px' justifyContent='center' alignItems='center'>
+              <Flex mt='20px' w={['100%']} direction={['column']} gap='10px' justifyContent='center' alignItems='center'>
                 <Button 
                   variant='wyrmButton'
                   color='black' 
@@ -77,17 +87,9 @@ export default function Home() {
                   >
                   Create a character
                 </Button>
-                <Button 
-                  variant='wyrmButton'
-                  minW={['100%', 'fit-content', 'fit-content']}
-                  px={['0', '0', '30px']}
-                  border='2px solid white'
-                  bg='transparent'
-                  onClick={primaryAction}
-                  _hover={{bg: 'white', color: 'black'}}
-                  >
-                  Join our discord
-                </Button>
+                <Text fontSize={{base: '16px', sm: '18px'}} fontFamily='Inter'>
+                  and join our Discord
+                </Text>
               </Flex>
             </Flex>
 
@@ -100,8 +102,10 @@ export default function Home() {
           </Flex>
 
           <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
-            <ImageFallback text='UI demo or illustration' minH={['501px', '0px', '0px']} minW={['100%', '0%', '0%']} flex='1'/>
-            <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1'>
+            <Box borderRadius='15px' border='1px solid white' pt='54px' pb='0' px='20px' flex='1' flexShrink='0'>
+              <Image src={is1440View? assets.card1Sm : assets.card1L} h={{base: '346px', sm: '390px'}} minW='270px' mx='auto'/>
+            </Box>
+            <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1' flexShrink='1'>
               <Text fontWeight='700' fontSize={{base: '30px', l: '40px'}} lineHeight='120%'>Start your adventure</Text>
               <Text fontFamily='Inter' >Make a character or choose an existing character to add to the game’s lore.</Text> 
               <Text fontFamily='Inter' >Choose a  path to follow.  </Text>
@@ -122,7 +126,11 @@ export default function Home() {
           </Flex>
 
           <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
-            {isBaseView && <ImageFallback text='UI demo or illustration' minH={['501px', '0px', '0px']} minW={['100%', '0%', '0%']} flex='1'/>}
+            {isBaseView && (
+              <Box borderRadius='15px' border='1px solid white' pt='54px' pb='54' px='20px' flex='1' flexShrink='0'>
+                <Image src={is1440View? assets.card2Sm : assets.card2L} h={{base: '346px', sm: '390px'}} minW='270px' mx='auto'/>
+              </Box>
+            )}
             <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1'>
               <Text fontWeight='700' fontSize={{base: '30px', l: '40px'}} lineHeight='120%'>Become a Game Master</Text>
               <Text fontFamily='Inter' >If creating elaborate adventures for players to embark on is more your thing, become a Game Master.</Text> 
@@ -141,11 +149,17 @@ export default function Home() {
                   Start creating
               </Button>
             </Flex>
-            {!isBaseView && <ImageFallback text='UI demo or illustration' minH={['501px', '0px', '0px']} minW={['100%', '0%', '0%']} flex='1'/>}
+            {!isBaseView && (
+              <Box borderRadius='15px' border='1px solid white' pt='54px' pb='54' px='20px' flex='1' flexShrink='0'>
+                <Image src={is1440View? assets.card2Sm : assets.card2L} h={{base: '346px', sm: '390px'}} minW='270px' mx='auto'/>
+              </Box>
+            )} 
           </Flex>
 
           <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
-            <ImageFallback text='UI demo or illustration' minH={['501px', '0px', '0px']} minW={['100%', '0%', '0%']} flex='1'/>
+            <Box borderRadius='15px' border='1px solid white' pt='54px' pb='0' px='20px' flex='1' flexShrink='0' bg='linear-gradient(98.77deg, #1A1D22 18.8%, #EB8C6A 36.58%, #FDDFD8 106.11%), #4D4D4D;'>
+              <Image src={is1440View? assets.card3Sm : assets.card3L} h={{base: '346px', sm: '390px'}} minW='270px' mx='auto'/>
+            </Box>
             <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1'>
               <Text fontWeight='700' fontSize={{base: '30px', l: '40px'}} lineHeight='120%'>Garden of  Forking Paths</Text>
               <Text fontFamily='Inter' >Great Wyrm runs on the Garden of Forking Paths, a platform which allows anybody to host and run multiplayer choose your own adventure games..</Text> 
@@ -166,7 +180,11 @@ export default function Home() {
           </Flex>
 
           <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
-            {isBaseView && <ImageFallback text='UI demo or illustration' minH={['501px', '0px', '0px']} minW={['100%', '0%', '0%']} flex='1'/>}
+            {isBaseView && (
+              <Box borderRadius='15px' border='1px solid white' pt='0' pb='0' px='20px' flex='1' flexShrink='0'>
+                <Image objectFit='cover' src={is1440View? assets.card4Sm : assets.card4L} h='450px' minW='270px' mx='auto'/>
+              </Box>
+            )}
             <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1'>
               <Text fontWeight='700' fontSize={{base: '30px', l: '40px'}} lineHeight='120%'>Nobody else sees this but you</Text>
               <Text fontFamily='Inter' fontWeight='700' >Are you at ETHDenver?</Text> 
@@ -185,7 +203,11 @@ export default function Home() {
 
               </Button>
             </Flex>
-            {!isBaseView && <ImageFallback text='UI demo or illustration' minH={['501px', '0px', '0px']} minW={['100%', '0%', '0%']} flex='1'/>}
+            {!isBaseView && (
+              <Box borderRadius='15px' border='1px solid white' pt='0' pb='0' px='20px' flex='1' flexShrink='0'>
+                <Image objectFit='cover' src={is1440View? assets.card4Sm : assets.card4L} h='450px' minW='270px' mx='auto'/>
+              </Box>
+            )}
           </Flex>
 
 

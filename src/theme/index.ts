@@ -8,6 +8,8 @@ import colors from './foundations/colors'
 
 // Component style overrides
 import Button from './components/button'
+import Menu from './components/menu'
+
 
 const overrides = {
   breakpoints,
@@ -15,6 +17,7 @@ const overrides = {
   // Other foundational style overrides go here
   components: {
     Button,
+    Menu,
   },
   styles: {
     global: () => ({

@@ -21,8 +21,9 @@ const assets = {
   card3L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-3-l.png`,
   card4Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-4-sm.png`,
   card4L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-4-l.png`,
-
-
+  moonLogo: `${AWS_ASSETS_PATH}/great-wyrm-landing/moonstream-logo.png`,
+  ogLogo: `${AWS_ASSETS_PATH}/great-wyrm-landing/og-logo-white.png`,
+  calderaLogo: `${AWS_ASSETS_PATH}/great-wyrm-landing/caldera-logo.png`,
 }
 
 const gradient = 'linear-gradient(180deg, rgba(26, 29, 34, 0) 63.89%, rgba(26, 29, 34, 0.0100738) 69.1%, rgba(26, 29, 34, 0.0386868) 73.45%, rgba(26, 29, 34, 0.0834265) 77.06%, rgba(26, 29, 34, 0.14188) 80.01%, rgba(26, 29, 34, 0.211635) 82.42%, rgba(26, 29, 34, 0.290279) 84.4%, rgba(26, 29, 34, 0.3754) 86.05%, rgba(26, 29, 34, 0.464584) 87.47%, rgba(26, 29, 34, 0.555419) 88.78%, rgba(26, 29, 34, 0.645493) 90.07%, rgba(26, 29, 34, 0.732393) 91.45%, rgba(26, 29, 34, 0.813706) 93.03%, rgba(26, 29, 34, 0.88702) 94.91%, rgba(26, 29, 34, 0.949922) 97.2%, #1A1D22 100%)'
@@ -95,11 +96,24 @@ export default function Home() {
 
 
 
-
-          <Flex direction='column' py='40px' px={['20px', '20px', '40px', '120px', '182px']} gap='30px' borderRadius='30px' border='1px solid white' textAlign='center'>
-            <Text fontWeight='700' fontSize={['24px', '30px', '30px']} lineHeight='120%'>True Open Gaming License</Text>
-            <Text fontFamily='Inter'>We value and support content creators. No corporate overlords collect taxes here. All the fees go to content creators, and to support the infrastructure behind the game.</Text>
+          <Flex direction='column' gap={{base: '20px', sm: '30px'}}>
+            <Flex direction='column' py='40px' px={['20px', '20px', '40px', '120px', '182px']} gap='30px' borderRadius='30px' border='1px solid white' textAlign='center'>
+              <Text fontWeight='700' fontSize={['24px', '30px', '30px']} lineHeight='120%'>True Open Gaming License</Text>
+              <Text fontFamily='Inter'>We value and support content creators. No corporate overlords collect taxes here. All the fees go to content creators, and to support the infrastructure behind the game.</Text>
+            </Flex>
+            <Flex textAlign='center' alignItems='center' justifyContent='center' w='100%' fontFamily='Space Grotesk' fontSize='16px' p='20px' gap={{base: '23px', sm: '30px'}} direction={{base: 'column', sm: 'row'}} bg='#101114' borderRadius='20px'>
+              <Flex gap='10px' justifyContent='center' alignItems='center'>
+                <Text>made by</Text>
+                <Image src={assets.moonLogo} alt='' w='151px' h='22px'/>
+              </Flex>
+              <Text mt={{base: '-8px', sm: '0'}}>in&nbsp;partnership&nbsp;with</Text>
+              <Flex gap='20px' p='0' justifyContent='center' alignItems='center'>
+                <Image src={assets.ogLogo} alt='' w='95px'/>
+                <Image src={assets.calderaLogo} alt='' w='90px' h='16px'/>
+              </Flex>
+            </Flex>
           </Flex>
+
 
           <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
             <Box borderRadius='15px' border='1px solid white' pt='54px' pb='0' px='20px' flex='1' flexShrink='0'>

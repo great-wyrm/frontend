@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import React, {  useContext, useEffect } from "react";
+import React, {  useContext, useEffect, useState } from "react";
 import Head from 'next/head'
 
 
@@ -8,33 +8,48 @@ import { Flex, Text } from "@chakra-ui/react";
 
 import useRouter from '../../src/hooks/useRouter';
 import useGofp from "../../src/contexts/GoFPContext";
-import Web3Context from "../../src/contexts/Web3Context/context";
-import useGofpContract from "../../src/hooks/useGofpConract";
 import VotingStagePanel from "../../src/components/VotingStagePanel";
-import Navbar from "../../src/components/Navbar";
+import { useQuery } from "react-query";
+import { hookCommon } from "../../src/hooks";
+import { queryPublic } from "../../src/utils/http";
+import { SessionMetadata } from "../../src/components/GoFPTypes";
+
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
 
 
 const Voting = () => {
   const router = useRouter();
   
-  const { gardenContractAddress, sessionId, setSessionId } = useGofp()
-  const web3ctx = useContext(Web3Context)
+  const { sessionId, setSessionId } = useGofp()
+  const [metadataUri, setmetadataUri] = useState('')
+  const currentStage = 3
 
-  const {currentStage, sessionMetadata, correctPaths} = useGofpContract({
-    sessionId, 
-    gardenContractAddress,
-    web3ctx,
-  })
 
   useEffect(() => {
+    setmetadataUri(router.query["uri"])
     setSessionId(router.query["sessionId"]) //TODO router.ready ?
-    console.log(sessionId)
   }, [])
 
-  useEffect(() => {
-    console.log(sessionMetadata.data)
-    console.log(currentStage.data)
-  }, [sessionMetadata.data, currentStage.data])
+  const fetchMetadataUri = async (uri: string) => {
+    return queryPublic(uri)
+  };
+
+  const sessionMetadata =  useQuery(
+    ["get_metadata", metadataUri],
+    async () => {
+      return fetchMetadataUri(metadataUri).then((res) => {
+        console.log(res.data)
+        return res.data as SessionMetadata;
+      });
+    },
+    {
+      ...hookCommon,
+      enabled: !!metadataUri,
+    }
+  );
+
 
   const siteTitle = 'Great Wyrm Voting'
   const AWS_ASSETS_PATH = `https://s3.amazonaws.com/static.simiotics.com/moonstream/assets`
@@ -57,21 +72,29 @@ const Voting = () => {
         <meta name='og:image' content={`${AWS_ASSETS_PATH}/metadata-image.png`} />
       </Head>
       <Flex direction='column'>
-        <Navbar />
-        {sessionMetadata.data && currentStage.data && (
+        {sessionMetadata.data && currentStage && (
         <Flex direction='column' gap='40px' px={{base: '16px'}} py={{base: '60px'}} color='white'>
           <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>
-            <Text fontWeight='700' fontSize='14px'>Session Lore</Text>
-            <Text mb='10px'>{sessionMetadata.data.lore}</Text>
-            <Text fontWeight='700' fontSize='14px'>Stage Lore</Text>
-            <Text  mb='10px'>{sessionMetadata.data.stages[currentStage.data - 1].lore}</Text>
+            {sessionMetadata.data.lore && (
+              <>
+                <Text fontWeight='700' fontSize='14px'>Session Lore</Text>
+                <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>
+                  {sessionMetadata.data.lore}
+                </ReactMarkdown>
+              </>
+            )}
+
+            <Text fontWeight='700' fontSize='14px' mt='10px'>Stage Lore</Text>
+            <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>
+              {sessionMetadata.data.stages[currentStage - 1].lore}
+            </ReactMarkdown>
           </Flex>
+          <VotingStagePanel stage={currentStage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[currentStage - 1]}/>
           <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' mt='-20px'>
             <Text fontWeight='700' fontSize='14px'>About Great Wyrm</Text>
             <Text>Great Wyrm is the first fully decentralized RPG. It runs on the Garden of Forking Paths game mechanic. Great Wyrm is similar to choose-your-own-adventure gameplay, only in this case, there can be right and wrong choices. </Text>
             <Text>You can create your own stories behind paths you choose. Form alliances based on the chosen paths. Try to persuade other people to join your alliance or trick them into choosing a different path that doesn’t lead anywhere good. </Text>
           </Flex>
-          <VotingStagePanel stage={currentStage.data} currentStage={currentStage.data} stageMetadata={sessionMetadata.data.stages[currentStage.data - 1]}/>
         </Flex>
         )}
       </Flex>

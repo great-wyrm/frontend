@@ -97,7 +97,7 @@ const VotingStagePanel = ({stage, currentStage, stageMetadata}: {stage: number, 
     >
       {`${stage === currentStage ? 'Active stage - ' : ''}Stage ${stage}`}
     </Text>
-    <Flex overflowX='auto' maxW='90%' pb='15px' position='relative'  className="carousel">
+    <Flex overflowX='auto' maxW='90%' pb='15px' position='relative'  px='10px' className="carousel">
 
       {stageMetadata.paths.map((path: any, idx: number) => {
         return (
@@ -114,11 +114,11 @@ const VotingStagePanel = ({stage, currentStage, stageMetadata}: {stage: number, 
         )
       })}
     </Flex>
-    <Flex direction='column' border='1px solid white' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>
+    <Flex maxW='400px' direction='column' border='1px solid white' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>
       <Text fontWeight='700' fontSize='14px'>Path {selectedPath} Lore</Text>
       <Text>{stageMetadata.paths[selectedPath - 1].lore}</Text>
     </Flex>
-    <Button variant='orangeGradient' w='100%' fontWeight='700' fontSize='16' onClick={() => postVote.mutate()}>Vote</Button>
+    <Button maxW='400px' variant='orangeGradient' w='100%' fontWeight='700' fontSize='16' onClick={() => postVote.mutate()}>Vote</Button>
   </Flex>
   )
 }

@@ -23,7 +23,7 @@ const TextWithPopup = ({text, image, title}: {text: string, title: string, image
         {text.length > 500 ? text.slice(0, 400) + ' ... ' : text}
       </ReactMarkdown>
 
-      {text.length > 500 && <Text color='#F56646' fontWeight='700' fontSize='12px' onClick={onOpen}>Read More</Text>}
+      {text.length > 500 && <Text color='#F56646' fontWeight='700' fontSize='12px' onClick={onOpen} cursor='pointer'>Read More</Text>}
       <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent

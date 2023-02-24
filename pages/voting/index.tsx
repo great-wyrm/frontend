@@ -24,7 +24,7 @@ const Voting = () => {
   
   const { sessionId, setSessionId } = useGofp()
   const [metadataUri, setmetadataUri] = useState('')
-  const currentStage = 3
+  const currentStage = 1
 
 
   useEffect(() => {
@@ -71,20 +71,17 @@ const Voting = () => {
         />
         <meta name='og:image' content={`${AWS_ASSETS_PATH}/metadata-image.png`} />
       </Head>
-      <Flex direction='column'>
+      <Flex direction='column' fontFamily='Space Grotesk'>
         {sessionMetadata.data && currentStage && (
         <Flex direction='column' gap='40px' px={{base: '16px'}} py={{base: '60px'}} color='white'>
           <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>
-            {sessionMetadata.data.lore && (
-              <>
-                <Text fontWeight='700' fontSize='14px'>Session Lore</Text>
-                <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>
-                  {sessionMetadata.data.lore}
-                </ReactMarkdown>
-              </>
-            )}
 
-            <Text fontWeight='700' fontSize='14px' mt='10px'>Stage Lore</Text>
+            <Text fontWeight='700' fontSize='14px'>{sessionMetadata.data.title}</Text>
+            <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>
+              {sessionMetadata.data.lore}
+            </ReactMarkdown>
+
+            <Text fontWeight='700' fontSize='14px' mt='10px'>{sessionMetadata.data.stages[currentStage - 1].title}</Text>
             <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>
               {sessionMetadata.data.stages[currentStage - 1].lore}
             </ReactMarkdown>

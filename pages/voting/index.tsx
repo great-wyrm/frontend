@@ -14,8 +14,7 @@ import { hookCommon } from "../../src/hooks";
 import { queryPublic } from "../../src/utils/http";
 import { SessionMetadata } from "../../src/components/GoFPTypes";
 
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import TextWithPopup from "../../src/components/TextWithPopup";
 
 
 
@@ -24,7 +23,8 @@ const Voting = () => {
   
   const { sessionId, setSessionId } = useGofp()
   const [metadataUri, setmetadataUri] = useState('')
-  const currentStage = 1
+  const currentStage = 3
+
 
 
   useEffect(() => {
@@ -75,16 +75,8 @@ const Voting = () => {
         {sessionMetadata.data && currentStage && (
         <Flex direction='column' gap='40px' px={{base: '16px'}} py={{base: '60px'}} color='white'>
           <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>
-
-            <Text fontWeight='700' fontSize='14px'>{sessionMetadata.data.title}</Text>
-            <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>
-              {sessionMetadata.data.lore}
-            </ReactMarkdown>
-
-            <Text fontWeight='700' fontSize='14px' mt='10px'>{sessionMetadata.data.stages[currentStage - 1].title}</Text>
-            <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>
-              {sessionMetadata.data.stages[currentStage - 1].lore}
-            </ReactMarkdown>
+            <TextWithPopup title={sessionMetadata.data.title} text={sessionMetadata.data.lore} image={sessionMetadata.data.imageUrl} />
+            <TextWithPopup title={sessionMetadata.data.stages[currentStage - 1].title} text={sessionMetadata.data.stages[currentStage - 1].lore} image={sessionMetadata.data.stages[currentStage - 1].imageUrl} />
           </Flex>
           <VotingStagePanel stage={currentStage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[currentStage - 1]}/>
           <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' mt='-20px'>

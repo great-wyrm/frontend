@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { Box, Button, Center, Flex, Image, Spacer, Text, useMediaQuery } from '@chakra-ui/react'
 
 import Layout from '../src/components/greatWyrm/layout'
-import ImageFallback from '../src/components/greatWyrm/ImageFallback'
 import useMoonToast from '../src/components/useMoonToast'
 import { AWS_ASSETS_PATH  } from '../src/constants'
 
@@ -22,8 +21,8 @@ const assets = {
   card4Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-4-sm.png`,
   card4L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-4-l.png`,
   moonLogo: `${AWS_ASSETS_PATH}/great-wyrm-landing/moonstream-logo.png`,
-  ogLogo: `${AWS_ASSETS_PATH}/great-wyrm-landing/og-logo-white.png`,
   calderaLogo: `${AWS_ASSETS_PATH}/great-wyrm-landing/caldera-logo.png`,
+  ogLogo: `https://s3.amazonaws.com/static.simiotics.com/play/minigames/great-wyrm-landing/op-logo-white1.png`,
 }
 
 const gradient = 'linear-gradient(180deg, rgba(26, 29, 34, 0) 63.89%, rgba(26, 29, 34, 0.0100738) 69.1%, rgba(26, 29, 34, 0.0386868) 73.45%, rgba(26, 29, 34, 0.0834265) 77.06%, rgba(26, 29, 34, 0.14188) 80.01%, rgba(26, 29, 34, 0.211635) 82.42%, rgba(26, 29, 34, 0.290279) 84.4%, rgba(26, 29, 34, 0.3754) 86.05%, rgba(26, 29, 34, 0.464584) 87.47%, rgba(26, 29, 34, 0.555419) 88.78%, rgba(26, 29, 34, 0.645493) 90.07%, rgba(26, 29, 34, 0.732393) 91.45%, rgba(26, 29, 34, 0.813706) 93.03%, rgba(26, 29, 34, 0.88702) 94.91%, rgba(26, 29, 34, 0.949922) 97.2%, #1A1D22 100%)'
@@ -107,9 +106,9 @@ export default function Home() {
                 <Image src={assets.moonLogo} alt='' w='151px' h='22px'/>
               </Flex>
               <Text mt={{base: '-8px', sm: '0'}}>in&nbsp;partnership&nbsp;with</Text>
-              <Flex gap='20px' p='0' justifyContent='center' alignItems='center'>
-                <Image src={assets.ogLogo} alt='' w='95px'/>
+              <Flex gap='30px' p='0' justifyContent='center' alignItems='center'>
                 <Image src={assets.calderaLogo} alt='' w='90px' h='16px'/>
+                <Image src={assets.ogLogo} alt='' w='40px'/>
               </Flex>
             </Flex>
           </Flex>

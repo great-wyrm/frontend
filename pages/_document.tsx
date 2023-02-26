@@ -7,6 +7,7 @@ export default function Document() {
       <Head>
         <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' />
         <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet' />
+        <link href='https://fonts.googleapis.com/css?family=Space Grotesk' rel='stylesheet'/>
       </Head>
       <body>
         <Main />

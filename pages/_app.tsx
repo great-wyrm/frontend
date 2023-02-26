@@ -6,7 +6,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 import theme from '../src/theme'
 import '../src/styles/globals.css'
-import Web3Context  from '../src/contexts/Web3Context'
 import { GofpProvider } from '../src/contexts/GoFPContext'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -14,14 +13,11 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={theme}>
-            <QueryClientProvider client={queryClient}>
-
-<Web3Context>
-  <GofpProvider>
+      <QueryClientProvider client={queryClient}>
+        <GofpProvider>
           <Component {...pageProps} />
           </GofpProvider>
-        </Web3Context>
-      </QueryClientProvider>
+        </QueryClientProvider>
     </ChakraProvider>
   )
 }

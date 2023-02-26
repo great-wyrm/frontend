@@ -47,7 +47,7 @@ const TextWithPopup = ({text, image, title}: {text: string, title: string, image
               </Flex>
             </ModalBody>
             <ModalFooter>
-              <Button bgColor="#4D4D4D" onClick={onClose}>
+              <Button bgColor="#4D4D4D" _hover={{bg: '#5d5d5d'}} onClick={onClose}>
                 Close
               </Button>
             </ModalFooter>

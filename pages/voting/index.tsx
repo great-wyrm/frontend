@@ -64,12 +64,12 @@ const Voting = () => {
         <link rel='icon' href='/favicon.png' />
         <meta
           name='description'
-          content='Moonstream provides economic infrastructure for web3 games. Gather actionable data with our web3 data analytics. Act on it with our on-chain mechanics. Watch your economy flourish.'
+          content='The only player-owned role-playing game in the world. Great Wyrm players have full control of the world we all play in.'
         />
         <meta name='og:title' content={siteTitle} />
         <meta
           name='keywords'
-          content='analytics, blockchain analytics, protocol, protocols, blockchain, crypto, data, NFT gaming, smart contracts, web3, smart contract, ethereum, polygon, matic, transactions, defi, finance, decentralized, mempool, NFT, NFTs, DAO, DAOs, cryptocurrency, cryptocurrencies, bitcoin, blockchain economy, blockchain game, marketplace, blockchain security, loyalty program, Ethereum bridge, Ethereum bridges, NFT game, NFT games'
+          content='games, gaming'
         />
         <meta name='og:image' content={`${AWS_ASSETS_PATH}/great-wyrm-logo.png`} />
       </Head>

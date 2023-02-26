@@ -25,9 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode; home?:
           name='keywords'
           content='games, gaming' //TODO
         />
-        <meta name='og:image' 
-          content={`${AWS_ASSETS_PATH}great-wyrm-cover-sm.png`} //TODO
-        />
+        <meta name='og:image' content={`${AWS_ASSETS_PATH}/great-wyrm-logo.png`} />
       </Head>
       <Flex minH='100vh' flexDirection='column' justifyContent='space-between' fontFamily='Cinzel'>
         {children}

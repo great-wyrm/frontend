@@ -15,7 +15,12 @@ import { queryPublic } from "../../src/utils/http";
 import { SessionMetadata } from "../../src/components/GoFPTypes";
 
 import TextWithPopup from "../../src/components/TextWithPopup";
-import { AWS_ASSETS_PATH, GOFP_METADATA_PATH } from "../../src/constants";
+import { AWS_ASSETS_PATH } from "../../src/constants";
+
+const GardenABI = require('../../src/web3/abi/GoFPABI.json');
+import { GOFPFacet as GardenABIType } from '../../src/web3/contracts/types/GOFPFacet'
+import Web3 from "web3";
+import useMoonToast from "../../src/components/useMoonToast";
 
 
 
@@ -23,17 +28,18 @@ const Voting = () => {
   const router = useRouter()
   
   const { sessionId, setSessionId } = useGofp()
-  const [metadataUri, setmetadataUri] = useState('')
-  const currentStage = 3
+  const [contractAddress, setContractAddress] = useState('')
+  const [currentStage, setCurrentStage] = useState(0)
   const [isBaseView] = useMediaQuery('(max-width: 768px)')
   const [isLargeView] = useMediaQuery('(min-width: 1440px)')
+  const toast = useMoonToast()
 
 
 
 
   useEffect(() => {
-    setmetadataUri(`${GOFP_METADATA_PATH}/${router.query["uri"]}`)
-    setSessionId(router.query["sessionId"]) 
+    setContractAddress(router.query['contractAddress'])
+    setSessionId(Number(router.query["sessionId"])) 
   }, [])
 
   const fetchMetadataUri = async (uri: string) => {
@@ -41,22 +47,28 @@ const Voting = () => {
   };
 
   const sessionMetadata =  useQuery(
-    ["get_metadata", metadataUri],
+    ["get_metadata", contractAddress, sessionId],
     async () => {
-      return fetchMetadataUri(metadataUri).then((res) => {
-        return res.data as SessionMetadata;
-      });
+      const web3 = new Web3(new Web3.providers.HttpProvider('https://wyrm.constellationchain.xyz/http'))    
+      const gardenContract: any = new web3.eth.Contract(
+        GardenABI
+      ) as any as GardenABIType
+      gardenContract.options.address = contractAddress
+
+      const sessionInfo = await gardenContract.methods.getSession(sessionId).call();
+      const stage = await gardenContract.methods.getCurrentStage(sessionId).call();
+      setCurrentStage(Number(stage))
+
+      return fetchMetadataUri(sessionInfo[5]).then((res) => res.data as SessionMetadata)
     },
     {
       ...hookCommon,
-      enabled: !!metadataUri,
+      enabled: !!contractAddress && sessionId > 0,
+      onError: (e: Error) => toast(e.message, 'error')
     }
   );
 
-
   const siteTitle = 'Great Wyrm Voting'
-
-
 
   return (
     <div>
@@ -74,36 +86,35 @@ const Voting = () => {
         <meta name='og:image' content={`${AWS_ASSETS_PATH}/great-wyrm-logo.png`} />
       </Head>
       <Flex direction='column' alignItems={{base: '', sm: 'center'}} px='16px' justifyContent='center' minH='100vh'>
-        <Flex direction='column' fontFamily='Space Grotesk' maxW={{base: '720px', l: '1250'}}>
-        
-          <Text mt='20px' px='16px' fontSize='30px' fontWeight='700' w='100%' textAlign='start'>Voting</Text>
-          {sessionMetadata.data && currentStage && (
-          <Flex direction={{base: 'column', l: 'row'}} gap={{base: '40px', l: '60px'}} px={{base: '16px'}} py={{base: '40px'}} color='white'>
-            <Flex gap='40px' alignItems='top'>
-              <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' flex='1'>
-                <TextWithPopup title={sessionMetadata.data.title} text={sessionMetadata.data.lore} image={sessionMetadata.data.imageUrl} />
-                <TextWithPopup title={sessionMetadata.data.stages[currentStage - 1].title} text={sessionMetadata.data.stages[currentStage - 1].lore} image={sessionMetadata.data.stages[currentStage - 1].imageUrl} />
+        {sessionMetadata.data && (
+          <Flex direction='column' fontFamily='Space Grotesk' maxW={{base: '720px', l: '1250'}}>
+            <Text mt='20px' px='16px' fontSize='30px' fontWeight='700' w='100%' textAlign='start'>Voting</Text>
+            <Flex direction={{base: 'column', l: 'row'}} gap={{base: '40px', l: '60px'}} px={{base: '16px'}} py={{base: '40px'}} color='white'>
+              <Flex gap='40px' alignItems='top'>
+                <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' flex='1'>
+                  <TextWithPopup title={sessionMetadata.data.title} text={sessionMetadata.data.lore} image={sessionMetadata.data.imageUrl} />
+                  <TextWithPopup title={sessionMetadata.data.stages[currentStage - 1].title} text={sessionMetadata.data.stages[currentStage - 1].lore} image={sessionMetadata.data.stages[currentStage - 1].imageUrl} />
+                </Flex>
+                {!isBaseView && !isLargeView && (
+                  <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' flex='1'>
+                    <Text fontWeight='700' fontSize='14px'>About Great Wyrm</Text>
+                    <Text>Great Wyrm is the first fully decentralized RPG. It runs on the Garden of Forking Paths game mechanic. Great Wyrm is similar to choose-your-own-adventure gameplay, only in this case, there can be right and wrong choices. </Text>
+                    <Text>You can create your own stories behind paths you choose. Form alliances based on the chosen paths. Try to persuade other people to join your alliance or trick them into choosing a different path that doesn’t lead anywhere good. </Text>
+                  </Flex>
+                )}
               </Flex>
-              {!isBaseView && !isLargeView && (
-                <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' flex='1'>
+              <VotingStagePanel sessionId={sessionId} stage={currentStage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[currentStage - 1]}/>
+              {(isBaseView || isLargeView) && (
+
+                <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>
                   <Text fontWeight='700' fontSize='14px'>About Great Wyrm</Text>
                   <Text>Great Wyrm is the first fully decentralized RPG. It runs on the Garden of Forking Paths game mechanic. Great Wyrm is similar to choose-your-own-adventure gameplay, only in this case, there can be right and wrong choices. </Text>
                   <Text>You can create your own stories behind paths you choose. Form alliances based on the chosen paths. Try to persuade other people to join your alliance or trick them into choosing a different path that doesn’t lead anywhere good. </Text>
-                </Flex>
-              )}
+              </Flex>
+                )}
             </Flex>
-            <VotingStagePanel sessionId={sessionId} stage={currentStage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[currentStage - 1]}/>
-            {(isBaseView || isLargeView) && (
-
-              <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>
-                <Text fontWeight='700' fontSize='14px'>About Great Wyrm</Text>
-                <Text>Great Wyrm is the first fully decentralized RPG. It runs on the Garden of Forking Paths game mechanic. Great Wyrm is similar to choose-your-own-adventure gameplay, only in this case, there can be right and wrong choices. </Text>
-                <Text>You can create your own stories behind paths you choose. Form alliances based on the chosen paths. Try to persuade other people to join your alliance or trick them into choosing a different path that doesn’t lead anywhere good. </Text>
-            </Flex>
-              )}
           </Flex>
-          )}
-        </Flex>
+        )}
       </Flex>
     </div>
   );

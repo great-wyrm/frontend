@@ -46,7 +46,7 @@ export default function Home() {
         <title>great wyrm</title>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' 
-          href='/favicon.png' //TODO
+          href='/favicon.png'
         />
       </Head>
       <Flex 
@@ -72,9 +72,9 @@ export default function Home() {
 
       </Flex>
       <Center>
-        <Flex fontFamily='Cinzel' maxW='1440px 'alignItems='center' gap={['40px', '80px', '80px', '160px']} py={['40px', '80px', '80px']} px={['22px', '54px', '54px', '72px', '101px']} w='100%' direction='column' fontSize={['16px', '18px', '18px']} lineHeight={['20px', '23px', '23px']}>
+        <Flex fontFamily='Cinzel' maxW='1440px 'alignItems='center' gap='0'  px={['22px', '54px', '54px', '72px', '101px']} w='100%' direction='column' fontSize={['16px', '18px', '18px']} lineHeight={['20px', '23px', '23px']}>
 
-            <Flex flex='1' direction='column' gap={['20px', '20px', '40px']} textAlign={'center'} maxW='703px'>
+            <Flex flex='1' direction='column' gap={['20px', '20px', '40px']} pb={{base: '40px', sm: '80px'}} textAlign={'center'} maxW='703px' pt={{base: '20px', sm: '40px'}} >
               <Text fontWeight='700' fontSize={{base: '30px', sm:'40px', l: '50px'}} lineHeight='100%'>Enter the world of< br />Great Wyrm</Text>
               <Text fontFamily='Inter'>The only player-owned role-playing game in the world. Great Wyrm players have full control of the world we all play in.</Text>
               <Flex mt='20px' w={['100%']} direction={['column']} gap='10px' justifyContent='center' alignItems='center'>
@@ -95,8 +95,8 @@ export default function Home() {
 
 
 
-          <Flex direction='column' gap={{base: '20px', sm: '30px'}}>
-            <Flex direction='column' py='40px' px={['20px', '20px', '40px', '120px', '182px']} gap='30px' borderRadius='30px' border='1px solid white' textAlign='center'>
+          <Flex direction='column' gap={{base: '20px', sm: '30px'}} pt='40px' pb={{base: '0', sm: '60px'}} >
+            <Flex direction='column' py={{base: '20px', sm: '40px'}} px={['20px', '20px', '40px', '120px', '182px']} gap='30px' borderRadius='30px' border='1px solid white' textAlign='center'>
               <Text fontWeight='700' fontSize={['24px', '30px', '30px']} lineHeight='120%'>True Open Gaming License</Text>
               <Text fontFamily='Inter'>We value and support content creators. No corporate overlords collect taxes here. All the fees go to content creators, and to support the infrastructure behind the game.</Text>
             </Flex>
@@ -114,7 +114,7 @@ export default function Home() {
           </Flex>
 
 
-          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
+          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
             <Box borderRadius='15px' border='1px solid white' pt='54px' pb='0' px='20px' flex='1' flexShrink='0'>
               <Image src={is1440View? assets.card1Sm : assets.card1L} h={{base: '346px', sm: '390px'}} minW='270px' mx='auto'/>
             </Box>
@@ -138,7 +138,7 @@ export default function Home() {
                 </Flex>
           </Flex>
 
-          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
+          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
             {isBaseView && (
               <Box borderRadius='15px' border='1px solid white' pt='54px' pb='54' px='20px' flex='1' flexShrink='0'>
                 <Image src={is1440View? assets.card2Sm : assets.card2L} h={{base: '346px', sm: '390px'}} minW='270px' mx='auto'/>
@@ -169,7 +169,7 @@ export default function Home() {
             )} 
           </Flex>
 
-          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
+          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
             <Box borderRadius='15px' border='1px solid white' pt='54px' pb='0' px='20px' flex='1' flexShrink='0' bg='linear-gradient(98.77deg, #1A1D22 18.8%, #EB8C6A 36.58%, #FDDFD8 106.11%), #4D4D4D;'>
               <Image src={is1440View? assets.card3Sm : assets.card3L} h={{base: '346px', sm: '390px'}} minW='270px' mx='auto'/>
             </Box>
@@ -192,7 +192,7 @@ export default function Home() {
                 </Flex>
           </Flex>
 
-          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']}>
+          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
             {isBaseView && (
               <Box borderRadius='15px' border='1px solid white' pt='0' pb='0' px='20px' flex='1' flexShrink='0'>
                 <Image objectFit='cover' src={is1440View? assets.card4Sm : assets.card4L} h='450px' minW='270px' mx='auto'/>
@@ -223,8 +223,8 @@ export default function Home() {
             )}
           </Flex>
 
-
-            <Flex alignItems='center' bg='#EB8C6A' p='30px' borderRadius='20px' gap={{base: '40px', l: '60px'}} direction={{base: 'column', l: 'row'}} textAlign={{base: 'center', l: 'left'}}>
+          <Flex direction='column' gap={{base: '20px', sm: '40px'}} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
+            <Flex alignItems='center' bg='#EB8C6A' p={{base: '30px', sm: '40px'}} borderRadius='20px' gap={{base: '40px', l: '60px'}} direction={{base: 'column', l: 'row'}} textAlign={{base: 'center', l: 'left'}}>
               <Flex direction='column' gap='20px'>
                 <Text fontSize='30px' fontWeight='700' lineHeight='120%'>Join the Great Wyrm community to start the world building and be the first to play</Text>
               </Flex>
@@ -243,10 +243,10 @@ export default function Home() {
             </Flex>
 
 
-            <Flex alignItems='center' bg='white' color='black' p='30px' borderRadius='20px' gap={['20px', '40px', '40px']} direction={['column', 'row', 'row']} textAlign='center'>
+            <Flex alignItems='center' bg='white' color='black' p={{base: '30px', sm: '40px'}}  borderRadius='20px' gap={['20px', '40px', '40px']} direction={['column', 'row', 'row']} textAlign='center'>
               <Text textAlign={['center']}>The game is now in early access. You can start creating your own content, making your own characters, forming alliances, or apply to be a Game Master.  </Text>  
-
             </Flex>
+          </Flex>
         </Flex>
       </Center>
     </Layout>

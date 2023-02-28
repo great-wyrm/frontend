@@ -74,6 +74,7 @@ const Voting = () => {
     <div>
       <Head>
         <link rel='icon' href='/favicon.png' />
+        <title>great wyrm voting</title>
         <meta
           name='description'
           content='The only player-owned role-playing game in the world. Great Wyrm players have full control of the world we all play in.'

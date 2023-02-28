@@ -97,7 +97,7 @@ export default function Home() {
 
           <Flex direction='column' gap={{base: '20px', sm: '30px'}} pt='40px' pb={{base: '0', sm: '60px'}} >
             <Flex direction='column' py={{base: '20px', sm: '40px'}} px={['20px', '20px', '40px', '120px', '182px']} gap='30px' borderRadius='30px' border='1px solid white' textAlign='center'>
-              <Text fontWeight='700' fontSize={['24px', '30px', '30px']} lineHeight='120%'>True Open Gaming License</Text>
+              <Text fontWeight='700' fontSize={{base: '24px', sm: '30px', l: '40px'}} lineHeight='120%'>True Open Gaming License</Text>
               <Text fontFamily='Inter'>We value and support content creators. No corporate overlords collect taxes here. All the fees go to content creators, and to support the infrastructure behind the game.</Text>
             </Flex>
             <Flex textAlign='center' alignItems='center' justifyContent='center' w='100%' fontFamily='Space Grotesk' fontSize='16px' p='20px' gap={{base: '23px', sm: '30px'}} direction={{base: 'column', sm: 'row'}} bg='#101114' borderRadius='20px'>
@@ -244,7 +244,7 @@ export default function Home() {
 
 
             <Flex alignItems='center' bg='white' color='black' p={{base: '30px', sm: '40px'}}  borderRadius='20px' gap={['20px', '40px', '40px']} direction={['column', 'row', 'row']} textAlign='center'>
-              <Text textAlign={['center']}>The game is now in early access. You can start creating your own content, making your own characters, forming alliances, or apply to be a Game Master.  </Text>  
+              <Text fontFamily='Inter' textAlign={['center']}>The game is now in early access. You can start creating your own content, making your own characters, forming alliances, or apply to be a Game Master.  </Text>  
             </Flex>
           </Flex>
         </Flex>

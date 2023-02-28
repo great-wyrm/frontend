@@ -5,6 +5,7 @@ import { Box, Button, Center, Flex, Image, Spacer, Text, useMediaQuery } from '@
 import Layout from '../src/components/greatWyrm/layout'
 import useMoonToast from '../src/components/useMoonToast'
 import { AWS_ASSETS_PATH  } from '../src/constants'
+import { useRouter } from 'next/router'
 
 
 const assets = {
@@ -37,6 +38,18 @@ export default function Home() {
   const toast = useMoonToast()
   const primaryAction = () => {
     window.open('https://discord.com/invite/knBnttUPqH')
+  }
+
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.push({
+      pathname: '/voting',
+      query: {
+        contractAddress: '0x42A8E82253CD19EF8274D48fC0bC89cdf1B4425b',
+        sessionId: '1'
+      },
+    })
   }
 
 
@@ -210,7 +223,7 @@ export default function Home() {
                   _hover={{bg: '#EAA88F'}}
                   mb={['40px', '0', '0']}
                   mt='20px'
-                  onClick={() => toast('Coming soon...', 'error')}
+                  onClick={() => handleClick()}
                   >
                   Become a god
 

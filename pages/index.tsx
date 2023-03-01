@@ -128,6 +128,40 @@ export default function Home() {
 
 
           <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
+            {isBaseView && (
+              <Box borderRadius='15px' border='1px solid white' pt='0' pb='0' px='20px' flex='1' flexShrink='0'>
+                <Image objectFit='cover' src={is1440View? assets.card4Sm : assets.card4L} h='450px' minW='270px' mx='auto'/>
+              </Box>
+            )}
+            <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1'>
+              <Text fontWeight='700' fontSize={{base: '30px', l: '40px'}} lineHeight='120%'>Act I: An Awakening in Kalash</Text>
+              <Text fontFamily='Inter' >Two mazers of honey mead later, feeling much more philosophical, Dullen decides to leave it all to fate. 
+                He invites your party to take a turn ‘twisting the dragon’s tale’ – that is, wagering on the card that he will turn up first from an old, 
+                grimy deck with the traditional images of wyrms and serpents on the backs of the cards. Pick a card to wager on, and try to win a trip into 
+                the Bismil Mine.</Text>
+              <Spacer />
+              <Button 
+                  variant='wyrmButton'
+                  color='white' 
+                  bg='#EB8C6A' 
+                  _hover={{bg: '#EAA88F'}}
+                  mb={['40px', '0', '0']}
+                  mt='20px'
+                  onClick={() => handleClick()}
+                  >
+                  Become a god
+
+              </Button>
+            </Flex>
+            {!isBaseView && (
+              <Box borderRadius='15px' border='1px solid white' pt='0' pb='0' px='20px' flex='1' flexShrink='0'>
+                <Image objectFit='cover' src={is1440View? assets.card4Sm : assets.card4L} h='450px' minW='270px' mx='auto'/>
+              </Box>
+            )}
+          </Flex>
+
+
+          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
             <Box borderRadius='15px' border='1px solid white' pt='54px' pb='0' px='20px' flex='1' flexShrink='0'>
               <Image src={is1440View? assets.card1Sm : assets.card1L} h={{base: '346px', sm: '390px'}} minW='270px' mx='auto'/>
             </Box>
@@ -205,36 +239,6 @@ export default function Home() {
                 </Flex>
           </Flex>
 
-          <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
-            {isBaseView && (
-              <Box borderRadius='15px' border='1px solid white' pt='0' pb='0' px='20px' flex='1' flexShrink='0'>
-                <Image objectFit='cover' src={is1440View? assets.card4Sm : assets.card4L} h='450px' minW='270px' mx='auto'/>
-              </Box>
-            )}
-            <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1'>
-              <Text fontWeight='700' fontSize={{base: '30px', l: '40px'}} lineHeight='120%'>Nobody else sees this but you</Text>
-              <Text fontFamily='Inter' fontWeight='700' >Are you at ETHDenver?</Text> 
-              <Text fontFamily='Inter' >It&apos;s your chance to be a god in this story. Decide fates of Great Wyrm adventurers. Vote on each of their steps&apos; outcome. What will it be?</Text>
-              <Spacer />
-              <Button 
-                  variant='wyrmButton'
-                  color='white' 
-                  bg='#EB8C6A' 
-                  _hover={{bg: '#EAA88F'}}
-                  mb={['40px', '0', '0']}
-                  mt='20px'
-                  onClick={() => handleClick()}
-                  >
-                  Become a god
-
-              </Button>
-            </Flex>
-            {!isBaseView && (
-              <Box borderRadius='15px' border='1px solid white' pt='0' pb='0' px='20px' flex='1' flexShrink='0'>
-                <Image objectFit='cover' src={is1440View? assets.card4Sm : assets.card4L} h='450px' minW='270px' mx='auto'/>
-              </Box>
-            )}
-          </Flex>
 
           <Flex direction='column' gap={{base: '20px', sm: '40px'}} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
             <Flex alignItems='center' bg='#EB8C6A' p={{base: '30px', sm: '40px'}} borderRadius='20px' gap={{base: '40px', l: '60px'}} direction={{base: 'column', l: 'row'}} textAlign={{base: 'center', l: 'left'}}>

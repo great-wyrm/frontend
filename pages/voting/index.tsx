@@ -46,6 +46,11 @@ const Voting = () => {
   const fetchMetadataUri = async (uri: string) => {
     return queryPublic(uri)
   };
+  const { selectedPath, selectPath } = useGofp()
+  const changeStage = (newStage: number) => {
+    selectPath(1)
+    setStage(newStage)
+  }
 
   const sessionMetadata =  useQuery(
     ["get_metadata", contractAddress, sessionId],
@@ -59,7 +64,7 @@ const Voting = () => {
       const sessionInfo = await gardenContract.methods.getSession(sessionId).call();
       const newCurrentStage = await gardenContract.methods.getCurrentStage(sessionId).call();
       if (currentStage !== newCurrentStage) {
-        setStage(newCurrentStage)
+        changeStage(newCurrentStage)
         setCurrentStage(Number(newCurrentStage))
       }
 
@@ -109,7 +114,7 @@ const Voting = () => {
                   </Flex>
                 )}
               </Flex>
-              <VotingStagePanel setStage={setStage} sessionId={sessionId} stage={stage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[stage - 1]}/>
+              <VotingStagePanel setStage={changeStage} sessionId={sessionId} stage={stage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[stage - 1]}/>
               {(isBaseView || isLargeView) && (
 
                 <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>

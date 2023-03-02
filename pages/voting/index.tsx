@@ -104,7 +104,19 @@ const Voting = () => {
               <Flex gap='40px' alignItems='top'>
                 <Flex overflowY='auto' maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap={{base: '10px', sm: '15px'}}  fontSize='12px' flex='1' >
                   <TextWithPopup title={sessionMetadata.data.title} text={sessionMetadata.data.lore} image={sessionMetadata.data.imageUrl} />
-                  <TextWithPopup title={sessionMetadata.data.stages[stage - 1].title} text={sessionMetadata.data.stages[stage - 1].lore} image={sessionMetadata.data.stages[stage - 1].imageUrl} />
+                  <Flex direction='column' gap='10px'>
+                    {sessionMetadata.data.stages.filter((_, idx) => idx <= currentStage - 1).map((stage, idx) => {
+                    return (
+                      <Flex direction='column' gap='3px' mt='5px'>
+                        <Text>
+                          Stage {idx + 1}
+                        </Text>
+                        <TextWithPopup title={stage.title} text={stage.lore} image={stage.imageUrl} />
+                      </Flex>
+                        )
+                      }
+                    )}
+                  </Flex>
                 </Flex>
                 {!isBaseView && !isLargeView && (
                   <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' flex='1'>

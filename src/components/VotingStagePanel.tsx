@@ -121,7 +121,7 @@ const VotingStagePanel = ({sessionId, stage, currentStage, stageMetadata, setSta
         onClick={() => postVote.mutate()}
         disabled={postVote.isLoading}
       >
-        {postVote.isLoading ? <Spinner /> : 'Vote'}
+        {postVote.isLoading ? <Spinner /> : (stage == 3 || stage == 4 ? 'Solve' : 'Vote') }
       </Button> 
     )}
   </Flex>

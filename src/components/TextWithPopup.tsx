@@ -6,24 +6,41 @@ import { Flex, Image, Text, useDisclosure, Modal,
   ModalBody,
   ModalFooter,
   Button, } from "@chakra-ui/react"
+import { useEffect, useState } from "react";
 
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 
 
-const TextWithPopup = ({text, image, title}: {text: string, title: string, image?: string}) => {
+const TextWithPopup = ({text, image, title, maxLength = 300, cutLength = 200}: {text: string, title: string, image?: string, maxLength?: number, cutLength?: number}) => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [shortText, setShortText] = useState('')
+
+
+  useEffect(() => {
+
+    if (text.length > maxLength) {
+      let short = text.slice(0, Math.max(text.indexOf(' ', cutLength), cutLength))
+      const punctuations = ['!', '.', ',', '?', ':', ';', '-']
+      if (punctuations.includes(short.slice(-1))) {
+        short = short.slice(0, -1)
+      }
+      setShortText(short + ' ...')
+    } else {
+      setShortText('')
+    }
+  }, [text])
 
   return (
-    <>
-      <Text fontWeight='700' fontSize='14px'>{title}</Text>
+    <Flex direction='column'>
+      <Text fontWeight='700' fontSize='14px' mb='5px'>{title}</Text>
       <ReactMarkdown className='markdown' remarkPlugins={[remarkGfm]}>
-        {text.length > 500 ? text.slice(0, 400) + ' ... ' : text}
+        {shortText ? shortText : text}
       </ReactMarkdown>
 
-      {text.length > 500 && <Text w='fit-content' color='#F56646' fontWeight='700' fontSize='12px' onClick={onOpen} cursor='pointer'>Read More</Text>}
+      {shortText && <Text mt='-10px' w='fit-content' color='#F56646' fontWeight='700' fontSize='12px' onClick={onOpen} cursor='pointer'>Read More</Text>}
       <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent
@@ -53,7 +70,7 @@ const TextWithPopup = ({text, image, title}: {text: string, title: string, image
             </ModalFooter>
           </ModalContent>
         </Modal>
-    </>
+    </Flex>
   )
 }
 

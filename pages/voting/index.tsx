@@ -30,6 +30,7 @@ const Voting = () => {
   const { sessionId, setSessionId } = useGofp()
   const [contractAddress, setContractAddress] = useState('')
   const [currentStage, setCurrentStage] = useState(0)
+  const [stage, setStage] = useState(0)
   const [isBaseView] = useMediaQuery('(max-width: 768px)')
   const [isLargeView] = useMediaQuery('(min-width: 1440px)')
   const toast = useMoonToast()
@@ -56,8 +57,12 @@ const Voting = () => {
       gardenContract.options.address = contractAddress
 
       const sessionInfo = await gardenContract.methods.getSession(sessionId).call();
-      const stage = await gardenContract.methods.getCurrentStage(sessionId).call();
-      setCurrentStage(Number(stage))
+      const newCurrentStage = await gardenContract.methods.getCurrentStage(sessionId).call();
+      if (currentStage !== newCurrentStage) {
+        setStage(newCurrentStage)
+        setCurrentStage(Number(newCurrentStage))
+      }
+
 
       return fetchMetadataUri(sessionInfo[5]).then((res) => res.data as SessionMetadata)
     },
@@ -86,15 +91,15 @@ const Voting = () => {
         />
         <meta name='og:image' content={`${AWS_ASSETS_PATH}/great-wyrm-logo.png`} />
       </Head>
-      <Flex direction='column' alignItems={{base: '', sm: 'center'}} px='16px' justifyContent='center' minH='100vh'>
-        {sessionMetadata.data && (
+      <Flex userSelect='none' direction='column' alignItems={{base: '', sm: 'center'}} px='16px' justifyContent='center' minH='100vh'>
+        {sessionMetadata.data && stage > 0 && (
           <Flex direction='column' fontFamily='Space Grotesk' maxW={{base: '720px', l: '1250'}}>
             <Text mt='20px' px='16px' fontSize='30px' fontWeight='700' w='100%' textAlign='start'>Voting</Text>
-            <Flex direction={{base: 'column', l: 'row'}} gap={{base: '40px', l: '60px'}} px={{base: '16px'}} py={{base: '40px'}} color='white'>
+            <Flex maxH={{base: '', l: '603px'}} minH='603px' direction={{base: 'column', l: 'row'}} gap={{base: '40px', l: '60px'}} px={{base: '16px'}} py={{base: '40px'}} color='white'>
               <Flex gap='40px' alignItems='top'>
-                <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' flex='1'>
+                <Flex overflowY='auto' maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap={{base: '10px', sm: '15px'}}  fontSize='12px' flex='1' >
                   <TextWithPopup title={sessionMetadata.data.title} text={sessionMetadata.data.lore} image={sessionMetadata.data.imageUrl} />
-                  <TextWithPopup title={sessionMetadata.data.stages[currentStage - 1].title} text={sessionMetadata.data.stages[currentStage - 1].lore} image={sessionMetadata.data.stages[currentStage - 1].imageUrl} />
+                  <TextWithPopup title={sessionMetadata.data.stages[stage - 1].title} text={sessionMetadata.data.stages[stage - 1].lore} image={sessionMetadata.data.stages[stage - 1].imageUrl} />
                 </Flex>
                 {!isBaseView && !isLargeView && (
                   <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' flex='1'>
@@ -104,7 +109,7 @@ const Voting = () => {
                   </Flex>
                 )}
               </Flex>
-              <VotingStagePanel sessionId={sessionId} stage={currentStage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[currentStage - 1]}/>
+              <VotingStagePanel setStage={setStage} sessionId={sessionId} stage={stage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[stage - 1]}/>
               {(isBaseView || isLargeView) && (
 
                 <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>

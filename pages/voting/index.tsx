@@ -107,7 +107,7 @@ const Voting = () => {
                   <Flex direction='column' gap='10px'>
                     {sessionMetadata.data.stages.filter((_, idx) => idx <= currentStage - 1).map((stage, idx) => {
                     return (
-                      <Flex direction='column' gap='3px' mt='5px'>
+                      <Flex direction='column' gap='3px' mt='5px' key={idx}>
                         <Text>
                           Stage {idx + 1}
                         </Text>

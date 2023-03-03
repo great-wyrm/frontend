@@ -29,11 +29,11 @@ const Voting = () => {
   
   const { sessionId, setSessionId } = useGofp()
   const [contractAddress, setContractAddress] = useState('')
-  const [currentStage, setCurrentStage] = useState(0)
-  const [stage, setStage] = useState(0)
+  const [stage, setStage] = useState(1)
   const [isBaseView] = useMediaQuery('(max-width: 768px)')
   const [isLargeView] = useMediaQuery('(min-width: 1440px)')
   const toast = useMoonToast()
+
 
 
 
@@ -43,14 +43,45 @@ const Voting = () => {
     setSessionId(Number(router.query["sessionId"])) 
   }, [])
 
+
+
+
   const fetchMetadataUri = async (uri: string) => {
     return queryPublic(uri)
   };
+
   const { selectedPath, selectPath } = useGofp()
+
   const changeStage = (newStage: number) => {
     selectPath(1)
     setStage(newStage)
   }
+
+
+
+
+  const currentStage = useQuery(
+    ['get_current_stage', contractAddress, sessionId],
+    async () => {
+      const web3 = new Web3(new Web3.providers.HttpProvider('https://wyrm.constellationchain.xyz/http'))    
+      const gardenContract: any = new web3.eth.Contract(
+        GardenABI
+      ) as any as GardenABIType
+      gardenContract.options.address = contractAddress
+      return gardenContract.methods.getCurrentStage(sessionId).call();
+    },
+    {
+      ...hookCommon,
+      enabled: !!contractAddress && sessionId > 0,
+      onError: (e: Error) => toast(e.message, 'error')
+    }
+  )
+
+  useEffect(() => {
+    selectPath(1)
+    setStage(currentStage.data)
+  }, [currentStage.data])
+  
 
   const sessionMetadata =  useQuery(
     ["get_metadata", contractAddress, sessionId],
@@ -60,15 +91,7 @@ const Voting = () => {
         GardenABI
       ) as any as GardenABIType
       gardenContract.options.address = contractAddress
-
       const sessionInfo = await gardenContract.methods.getSession(sessionId).call();
-      const newCurrentStage = await gardenContract.methods.getCurrentStage(sessionId).call();
-      if (currentStage !== newCurrentStage) {
-        changeStage(newCurrentStage)
-        setCurrentStage(Number(newCurrentStage))
-      }
-
-
       return fetchMetadataUri(sessionInfo[5]).then((res) => res.data as SessionMetadata)
     },
     {
@@ -97,7 +120,7 @@ const Voting = () => {
         <meta name='og:image' content={`${AWS_ASSETS_PATH}/great-wyrm-logo.png`} />
       </Head>
       <Flex userSelect='none' direction='column' alignItems={{base: '', sm: 'center'}} px='16px' justifyContent='center' minH='100vh'>
-        {sessionMetadata.data && stage > 0 && (
+        {sessionMetadata.data && (
           <Flex direction='column' fontFamily='Space Grotesk' maxW={{base: '720px', l: '1250'}}>
             <Text mt='20px' px='16px' fontSize='30px' fontWeight='700' w='100%' textAlign='start'>Voting</Text>
             <Flex maxH={{base: '', l: '603px'}} minH='603px' direction={{base: 'column', l: 'row'}} gap={{base: '40px', l: '60px'}} px={{base: '16px'}} py={{base: '40px'}} color='white'>
@@ -105,7 +128,7 @@ const Voting = () => {
                 <Flex overflowY='auto' maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap={{base: '10px', sm: '15px'}}  fontSize='12px' flex='1' >
                   <TextWithPopup title={sessionMetadata.data.title} text={sessionMetadata.data.lore} image={sessionMetadata.data.imageUrl} />
                   <Flex direction='column' gap='10px'>
-                    {sessionMetadata.data.stages.filter((_, idx) => idx <= currentStage - 1).map((stage, idx) => {
+                    {sessionMetadata.data.stages.filter((_, idx) => idx <= currentStage.data - 1).map((stage, idx) => {
                     return (
                       <Flex direction='column' gap='3px' mt='5px' key={idx}>
                         <Text>
@@ -126,7 +149,7 @@ const Voting = () => {
                   </Flex>
                 )}
               </Flex>
-              <VotingStagePanel setStage={changeStage} sessionId={sessionId} stage={stage} currentStage={currentStage} stageMetadata={sessionMetadata.data.stages[stage - 1]}/>
+              {stage > 0 && <VotingStagePanel setStage={changeStage} sessionId={sessionId} stage={stage} currentStage={currentStage.data} stageMetadata={sessionMetadata.data.stages[stage - 1]}/>}
               {(isBaseView || isLargeView) && (
 
                 <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>

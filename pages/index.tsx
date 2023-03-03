@@ -96,35 +96,16 @@ export default function Home() {
                   color='black' 
                   bg='linear-gradient(92.3deg, #EB8C6A 8.4%, #FFFFFF 126.31%)' 
                   _hover={{bg: 'linear-gradient(263.61deg, #EAA88F -6.84%, #FFFFFF 128.87%)'}}
-                  onClick={primaryAction}
+                  onClick={() => handleClick()}
                   >
-                  Create a character
+                  Become a god
                 </Button>
-                <Text fontSize={{base: '16px', sm: '18px'}} fontFamily='Inter'>
-                  and join our Discord
-                </Text>
               </Flex>
             </Flex>
 
 
 
-          <Flex direction='column' gap={{base: '20px', sm: '30px'}} pt='40px' pb={{base: '0', sm: '60px'}} >
-            <Flex direction='column' py={{base: '20px', sm: '40px'}} px={['20px', '20px', '40px', '120px', '182px']} gap='30px' borderRadius='30px' border='1px solid white' textAlign='center'>
-              <Text fontWeight='700' fontSize={{base: '24px', sm: '30px', l: '40px'}} lineHeight='120%'>True Open Gaming License</Text>
-              <Text fontFamily='Inter'>We value and support content creators. No corporate overlords collect taxes here. All the fees go to content creators, and to support the infrastructure behind the game.</Text>
-            </Flex>
-            <Flex textAlign='center' alignItems='center' justifyContent='center' w='100%' fontFamily='Space Grotesk' fontSize='16px' p='20px' gap={{base: '23px', sm: '30px'}} direction={{base: 'column', sm: 'row'}} bg='#101114' borderRadius='20px'>
-              <Flex gap='10px' justifyContent='center' alignItems='center'>
-                <Text>made by</Text>
-                <Image src={assets.moonLogo} alt='' w='151px' h='22px'/>
-              </Flex>
-              <Text mt={{base: '-8px', sm: '0'}}>in&nbsp;partnership&nbsp;with</Text>
-              <Flex gap='30px' p='0' justifyContent='center' alignItems='center'>
-                <Image src={assets.calderaLogo} alt='' w='90px' h='16px'/>
-                <Image src={assets.ogLogo} alt='' w='40px'/>
-              </Flex>
-            </Flex>
-          </Flex>
+
 
 
           <Flex direction={['column', 'row', 'row']} gap={['40px', '60px', '60px']} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}}>
@@ -135,21 +116,23 @@ export default function Home() {
             )}
             <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1'>
               <Text fontWeight='700' fontSize={{base: '30px', l: '40px'}} lineHeight='120%'>Act I: An Awakening in Kalash</Text>
-              <Text fontFamily='Inter' >Two mazers of honey mead later, feeling much more philosophical, Dullen decides to leave it all to fate. 
-                He invites your party to take a turn ‘twisting the dragon’s tale’ – that is, wagering on the card that he will turn up first from an old, 
-                grimy deck with the traditional images of wyrms and serpents on the backs of the cards. Pick a card to wager on, and try to win a trip into 
-                the Bismil Mine.</Text>
-              <Spacer />
+              <Text fontFamily='Inter' >What awaits in the dim passageways of the Bismil Mine? Navigating the narrow, 
+                torchlit paths through the rock is only the beginning of today's challenges. If you are successful, 
+                you will then have to convince a group of dwarf sentries to let you into the newly discovered cave. 
+                But how does one sway a stubborn dwarf? And what is making the guards so uneasy?
+              </Text>
+              <Flex h='100%' alignItems='center'>
+                <Text fontFamily='Inter' fontWeight='700'>Want to choose the fate of these adventurers?</Text>
+              </Flex>
               <Button 
                   variant='wyrmButton'
                   color='white' 
                   bg='#EB8C6A' 
                   _hover={{bg: '#EAA88F'}}
                   mb={['40px', '0', '0']}
-                  mt='20px'
                   onClick={() => handleClick()}
                   >
-                  Become a god
+                  Vote
 
               </Button>
             </Flex>
@@ -237,6 +220,25 @@ export default function Home() {
                 Explore the story
             </Button>
                 </Flex>
+          </Flex>
+
+          <Flex direction='column' gap={{base: '20px', sm: '30px'}} pt={{base: '40px', sm: '80px'}} pb={{base: '40px', sm: '80px'}} >
+            <Flex direction='column' py={{base: '20px', sm: '40px'}} px={['20px', '20px', '40px', '120px', '182px']} gap='30px' borderRadius='30px' border='1px solid white' textAlign='center'>
+              <Text fontWeight='700' fontSize={{base: '24px', sm: '30px', l: '40px'}} lineHeight='120%'>True Open Gaming License</Text>
+              <Text fontFamily='Inter'>We value and support content creators. No corporate overlords collect taxes here. All the fees go to content creators, and to support the infrastructure behind the game.</Text>
+            {/* </Flex> */}
+              <Flex textAlign='center' alignItems='center' justifyContent='center' w='100%' fontFamily='Space Grotesk' fontSize='16px' p='20px' gap={{base: '23px', sm: '30px'}} direction={{base: 'column', sm: 'row'}} borderRadius='20px'>
+                <Flex gap='10px' justifyContent='center' alignItems='center'>
+                  <Text>made by</Text>
+                  <Image src={assets.moonLogo} alt='' w='151px' h='22px'/>
+                </Flex>
+                <Text mt={{base: '-8px', sm: '0'}}>in&nbsp;partnership&nbsp;with</Text>
+                <Flex gap='30px' p='0' justifyContent='center' alignItems='center'>
+                  <Image src={assets.calderaLogo} alt='' w='90px' h='16px'/>
+                  <Image src={assets.ogLogo} alt='' w='40px'/>
+                </Flex>
+              </Flex>
+            </Flex>
           </Flex>
 
 

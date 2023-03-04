@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Head from 'next/head'
 
 
-import { Flex, Text, useMediaQuery } from "@chakra-ui/react";
+import { Flex, Spinner, Text, useMediaQuery } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 
 import useRouter from '../../src/hooks/useRouter';
@@ -119,11 +119,13 @@ const Voting = () => {
         />
         <meta name='og:image' content={`${AWS_ASSETS_PATH}/great-wyrm-logo.png`} />
       </Head>
+
       <Flex userSelect='none' direction='column' alignItems={{base: '', sm: 'center'}} px='16px' justifyContent='center' minH='100vh'>
+        {sessionMetadata.isLoading && <Spinner />}  
         {sessionMetadata.data && (
           <Flex direction='column' fontFamily='Space Grotesk' maxW={{base: '720px', l: '1250'}}>
             <Text mt='20px' px='16px' fontSize='30px' fontWeight='700' w='100%' textAlign='start'>Voting</Text>
-            <Flex maxH={{base: '', l: '603px'}} minH='603px' direction={{base: 'column', l: 'row'}} gap={{base: '40px', l: '60px'}} px={{base: '16px'}} py={{base: '40px'}} color='white'>
+            <Flex maxH={{base: '', l: '703px'}} minH='603px' direction={{base: 'column', l: 'row'}} gap={{base: '40px', l: '60px'}} px={{base: '16px'}} py={{base: '40px'}} color='white'>
               <Flex gap='40px' alignItems='top'>
                 <Flex overflowY='auto' maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap={{base: '10px', sm: '15px'}}  fontSize='12px' flex='1' >
                   <TextWithPopup title={sessionMetadata.data.title} text={sessionMetadata.data.lore} image={sessionMetadata.data.imageUrl} />

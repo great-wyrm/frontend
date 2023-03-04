@@ -104,7 +104,7 @@ const VotingStagePanel = ({sessionId, stage, currentStage, stageMetadata, setSta
       })}
     </Flex>
     <Flex 
-      maxW='400px' 
+      maxW='500px' 
       direction='column' 
       border='1px solid white' 
       borderRadius='10px' 

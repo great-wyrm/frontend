@@ -116,10 +116,9 @@ export default function Home() {
             )}
             <Flex direction='column' gap='20px' textAlign={['center', 'center', 'start']} flex='1'>
               <Text fontWeight='700' fontSize={{base: '30px', l: '40px'}} lineHeight='120%'>Act I: An Awakening in Kalash</Text>
-              <Text fontFamily='Inter' >What awaits in the dim passageways of the Bismil Mine? Navigating the narrow, 
-                torchlit paths through the rock is only the beginning of today&apos;s challenges. If you are successful, 
-                you will then have to convince a group of dwarf sentries to let you into the newly discovered cave. 
-                But how does one sway a stubborn dwarf? And what is making the guards so uneasy?
+              <Text fontFamily='Inter' >At the heart of the caves, a hidden treasure awaits, 
+              and it is not at all what you expected. The choice you make today will change your 
+              life and life in the Kingdom of Reda forever.
               </Text>
               <Flex h='100%' alignItems='center'>
                 <Text fontFamily='Inter' fontWeight='700'>Want to choose the fate of these adventurers?</Text>

@@ -12,11 +12,10 @@ import VotingStagePanel from '../../src/components/VotingStagePanel'
 import { hookCommon } from '../../src/hooks'
 import { queryPublic } from '../../src/utils/http'
 import { SessionMetadata } from '../../src/components/GoFPTypes'
+import TextWithPopup from "../../src/components/TextWithPopup";
+import { AWS_ASSETS_PATH, CONSTELLATION_GREAT_WYRM_JSON_RPC_URL } from "../../src/constants";
 
-import TextWithPopup from '../../src/components/TextWithPopup'
-import { AWS_ASSETS_PATH } from '../../src/constants'
-
-const GardenABI = require('../../src/web3/abi/GoFPABI.json')
+const GardenABI = require('../../src/web3/abi/GoFPABI.json');
 import { GOFPFacet as GardenABIType } from '../../src/web3/contracts/types/GOFPFacet'
 import Web3 from 'web3'
 import useMoonToast from '../../src/components/useMoonToast'
@@ -50,8 +49,10 @@ const Voting = () => {
   const currentStage = useQuery(
     ['get_current_stage', contractAddress, sessionId],
     async () => {
-      const web3 = new Web3(new Web3.providers.HttpProvider('https://wyrm.constellationchain.xyz/http'))
-      const gardenContract: any = new web3.eth.Contract(GardenABI) as any as GardenABIType
+      const web3 = new Web3(new Web3.providers.HttpProvider(CONSTELLATION_GREAT_WYRM_JSON_RPC_URL))    
+      const gardenContract: any = new web3.eth.Contract(
+        GardenABI
+      ) as any as GardenABIType
       gardenContract.options.address = contractAddress
       return gardenContract.methods.getCurrentStage(sessionId).call()
     },
@@ -65,8 +66,10 @@ const Voting = () => {
   const sessionMetadata = useQuery(
     ['get_metadata', contractAddress, sessionId],
     async () => {
-      const web3 = new Web3(new Web3.providers.HttpProvider('https://wyrm.constellationchain.xyz/http'))
-      const gardenContract: any = new web3.eth.Contract(GardenABI) as any as GardenABIType
+      const web3 = new Web3(new Web3.providers.HttpProvider(CONSTELLATION_GREAT_WYRM_JSON_RPC_URL))    
+      const gardenContract: any = new web3.eth.Contract(
+        GardenABI
+      ) as any as GardenABIType
       gardenContract.options.address = contractAddress
       const sessionInfo = await gardenContract.methods.getSession(sessionId).call()
       return fetchMetadataUri(sessionInfo[5]).then((res) => res.data as SessionMetadata)

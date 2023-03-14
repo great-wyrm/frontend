@@ -13,9 +13,10 @@ export default function Layout({ children }: { children: React.ReactNode; home?:
   return (
     <div>
       <Head>
-        <link rel='icon' 
+        <link
+          rel='icon'
           href='/favicon.png' //TODO
-        /> 
+        />
         <meta
           name='description'
           content='The only player-owned role-playing game in the world. Great Wyrm players have full control of the world we all play in.'

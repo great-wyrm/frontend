@@ -1,4 +1,3 @@
-// import { mode, whiten } from "@chakra-ui/theme-tools"
 
 const Menu = {
   parts: ['button', 'list', 'item'],

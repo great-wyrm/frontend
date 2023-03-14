@@ -11,7 +11,7 @@ import hookCommon from "../hooks/hookCommon"
 import PathCard from "./GoFPPathCard"
 import useMoonToast from "./useMoonToast"
 
-const VotingStagePanel = ({sessionId, stage, currentStage, stageMetadata, setStage}: {sessionId: number, stage: number, currentStage: number, stageMetadata: any, setStage: (stage: number) => void}) => {
+const VotingStagePanel = ({sessionId, stage, currentStage, stageMetadata, setStage, numberOfStages}: {sessionId: number, stage: number, currentStage: number, stageMetadata: any, setStage: (stage: number) => void, numberOfStages: number}) => {
   const { generatePathId, selectedPath, selectPath } = useGofp()
   const toast = useMoonToast()
   const [userDidVote, setUserDidVote] = useState(false)
@@ -73,6 +73,9 @@ const VotingStagePanel = ({sessionId, stage, currentStage, stageMetadata, setSta
 
   const votes = useVotes();
   
+  if (!stageMetadata) {
+    return <></>
+  }
 
   return (
     <Flex direction='column' position='relative' gap='40px' alignItems='center' px='40px' borderRadius='15px' border='1px solid white' py='40px'>
@@ -86,7 +89,7 @@ const VotingStagePanel = ({sessionId, stage, currentStage, stageMetadata, setSta
         >
           {stage === currentStage ? `Active stage - ${stageMetadata.title}` : `Stage ${stage} - ${stageMetadata.title}`}
         </Text>
-        {stage < currentStage ? <IconButton aria-label='forward' size='10px'  _hover={{bg: '#2d2d2d'}} bg='transparent' color='white' icon={<ChevronRightIcon />} onClick={() => setStage(stage + 1)}/> : <Icon visibility='hidden' />}
+        {stage < currentStage && stage <= numberOfStages ? <IconButton aria-label='forward' size='10px'  _hover={{bg: '#2d2d2d'}} bg='transparent' color='white' icon={<ChevronRightIcon />} onClick={() => setStage(stage + 1)}/> : <Icon visibility='hidden' />}
       </Flex>
     <Flex overflowX='auto' maxW='100%' pb='15px' position='relative'  px='15px' id='carousel' className="carousel">
       {stageMetadata.paths.map((path: any, idx: number) => {

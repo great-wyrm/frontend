@@ -77,10 +77,7 @@ const Voting = () => {
     }
   )
 
-  useEffect(() => {
-    selectPath(1)
-    setStage(currentStage.data)
-  }, [currentStage.data])
+
   
 
   const sessionMetadata =  useQuery(
@@ -100,6 +97,15 @@ const Voting = () => {
       onError: (e: Error) => toast(e.message, 'error')
     }
   );
+
+  useEffect(() => {
+    if (stage != currentStage.data) {
+      selectPath(1)
+    }
+    if (sessionMetadata.data) {
+      setStage(Math.min(currentStage.data, sessionMetadata.data.stages.length))
+    }
+  }, [currentStage.data, sessionMetadata.data])
 
   const siteTitle = 'Great Wyrm Voting'
 
@@ -151,7 +157,7 @@ const Voting = () => {
                   </Flex>
                 )}
               </Flex>
-              {stage > 0 && <VotingStagePanel setStage={changeStage} sessionId={sessionId} stage={stage} currentStage={currentStage.data} stageMetadata={sessionMetadata.data.stages[stage - 1]}/>}
+              {stage > 0 && <VotingStagePanel numberOfStages={sessionMetadata.data.stages.length - 1} setStage={changeStage} sessionId={sessionId} stage={stage} currentStage={currentStage.data} stageMetadata={sessionMetadata.data.stages[stage - 1]}/>}
               {(isBaseView || isLargeView) && (
 
                 <Flex maxW={{base: '', l: '205px'}} direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px'>

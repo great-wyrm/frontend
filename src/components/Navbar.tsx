@@ -25,8 +25,6 @@ const Navbar = ({ home, ...props }: { home?: boolean; [x: string]: any }) => {
       justifyContent='space-between'
       {...props}
     >
-
-
       {true && (
         <Flex alignItems='center' gap='20px' w='100%' justifyContent='center' px='7%'>
           {web3Provider.buttonText !== web3Provider.WALLET_STATES.CONNECTED && (
@@ -45,7 +43,7 @@ const Navbar = ({ home, ...props }: { home?: boolean; [x: string]: any }) => {
               <code>
                 <Badge
                   p='10px 20px'
-                  fontSize={{base: '10px', sm: '12px', md: '16px'}}
+                  fontSize={{ base: '10px', sm: '12px', md: '16px' }}
                   fontWeight='400'
                   textTransform='none'
                   backgroundColor='white'
@@ -61,7 +59,6 @@ const Navbar = ({ home, ...props }: { home?: boolean; [x: string]: any }) => {
                     borderRadius={'inherit'}
                     startColor='red.500'
                     endColor='blue.500'
-
                     p={0}
                   >
                     {isSmallView ? `${web3Provider.account.slice(0, 6)}...${web3Provider.account.slice(-4)}` : web3Provider.account}

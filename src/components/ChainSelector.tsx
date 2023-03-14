@@ -18,15 +18,14 @@ const ChainSelector = () => {
         _active={{ textDecoration: 'none', backgroundColor: 'black.300' }}
         _focus={{ textDecoration: 'none', backgroundColor: 'black.300' }}
         _hover={{ textDecoration: 'none', fontWeight: '700' }}
-        fontSize={{base: '10px', sm: '12px', md: '16px'}}
-
+        fontSize={{ base: '10px', sm: '12px', md: '16px' }}
         rightIcon={<ChevronDownIcon />}
         leftIcon={
           ['ethereum', 'mumbai', 'polygon'].includes(web3Provider?.targetChain?.name ?? '') ? (
             <Image
               display={'inline'}
               alt='chain'
-              h={{base: '16px', sm: '18px', md: '24px'}}
+              h={{ base: '16px', sm: '18px', md: '24px' }}
               mr={0}
               src={
                 web3Provider.targetChain?.name === 'ethereum'
@@ -42,18 +41,15 @@ const ChainSelector = () => {
         }
         color='white'
         variant='outline'
-        // fontSize='16px'
       >
         {web3Provider.targetChain?.name ?? 'Chain selector'}
       </MenuButton>
       <MenuList
-        // bg='#1A1D22'
         color='white'
         borderRadius='30px'
         border='1px solid white'
       >
         <MenuItem
-          // isDisabled={web3Provider.targetChain?.name === "ethereum"}
           onClick={() => {
             web3Provider.changeChain('ethereum')
           }}
@@ -67,7 +63,6 @@ const ChainSelector = () => {
           Ethereum
         </MenuItem>
         <MenuItem
-          // isDisabled={web3Provider.targetChain?.name === "polygon"}
           onClick={() => {
             web3Provider.changeChain('polygon')
           }}
@@ -81,7 +76,6 @@ const ChainSelector = () => {
           Polygon
         </MenuItem>
         <MenuItem
-          // isDisabled={web3Provider.targetChain?.name === "mumbai"}
           onClick={() => {
             web3Provider.changeChain('mumbai')
           }}
@@ -95,7 +89,6 @@ const ChainSelector = () => {
           Mumbai
         </MenuItem>
         <MenuItem
-          // isDisabled={web3Provider.targetChain?.name === "localhost"}
           onClick={() => {
             web3Provider.changeChain('localhost')
           }}

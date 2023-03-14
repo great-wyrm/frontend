@@ -16,8 +16,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <GofpProvider>
           <Component {...pageProps} />
-          </GofpProvider>
-        </QueryClientProvider>
+        </GofpProvider>
+      </QueryClientProvider>
     </ChakraProvider>
   )
 }

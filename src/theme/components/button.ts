@@ -26,14 +26,12 @@ const variantWyrmButton = () => {
   }
 }
 
-
 const variantPlainOrange = () => {
   return {
     alignItems: 'center',
     justifyContent: 'center',
     border: 'solid transparent',
     borderRadius: '30px',
-    // variant: "solid",
     fontSize: ['md', 'md', 'lg', 'lg', 'xl', 'xl'],
     textColor: 'white',
     bg: '#F56646',

@@ -37,7 +37,7 @@ const tutorial = [
   'Look out for announcements about game sessions on Discord.',
   'Role play as your character.',
   'Choose your path in Garden of Forking Paths.',
-  'Gain your rewards after game session is over. ',
+  'Gain your rewards after the game session is over. ',
 ]
 
 export default function Home() {
@@ -150,7 +150,7 @@ export default function Home() {
             _hover={{ bg: '#EAA88F' }}
             mt={{base: '40px', sm: '60px'}}
           >
-            The great handbook
+            The great wyrm handbook
           </Button>
           </Link>
 
@@ -172,7 +172,7 @@ export default function Home() {
             _hover={{ bg: '#EAA88F' }}
             mt={{base: '40px', sm: '60px'}}
           >
-            Find out
+            Find out more
           </Button>
           </Link>
           <Box mt={{base: '80px', sm: '160px'}} borderRadius='15px' border='1px solid' borderColor='greatWyrm.frame' pt='54px' pb='0' w='100%'>

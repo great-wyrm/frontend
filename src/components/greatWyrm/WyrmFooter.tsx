@@ -24,12 +24,10 @@ const Footer = () => {
         >
           <Image src={wordmark} alt='' w='200px' />
           <SocialButtons />
-          <Flex justifyContent='center'>
-            <Link href='https://moonstream.to/privacy-policy'>Privacy policy</Link>
-            <Link href='https://moonstream.to/tos' ml='20px'>
-              Terms of Service
-            </Link>
-          </Flex>
+          <Link textAlign='center' mt='-20px' w='fit-content' href='https://moonstream.to/privacy-policy'>Privacy policy</Link>
+          <Link textAlign='center' mt='-40px' w='fit-content' href='https://moonstream.to/tos'>
+            Terms of Service
+          </Link>
           <Text textAlign='center' mt='-20px'>
             © {new Date().getFullYear()} Moonstream.to All&nbsp;rights&nbsp;reserved
           </Text>

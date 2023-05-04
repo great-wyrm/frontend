@@ -17,6 +17,38 @@ const overrides = {
   components: {
     Button,
     Menu,
+    Link: {
+      baseStyle: {
+        color: '#EB8C6A',
+        fontWeight: '700',
+        minW: {base: '100%', sm: '0'},
+        _hover: {
+          textDecoration: 
+          'none'
+        }
+      },
+    },
+    Text: {
+      variants: {
+        title: {
+          textAlign: 'center',
+          fontWeight: '700',
+          fontFamily: 'Cinzel',
+          lineHeight: '120%',
+          mt: {base: '40px', sm: '60px'},
+          fontSize: {base: '30px', l: '40px'},
+          textTransform: 'uppercase',
+        },
+        paragraph: {
+          fontWeight: '400',
+          fontFamily: 'Inter',
+          textAlign: {base: 'center', sm: 'left'},
+          mt: {base: '20px', sm: '40px'},
+          fontSize: {base: '16px', sm: '18px'},
+          lineHeight: {base: '19px', sm: '22px'},
+        }
+      },
+    },
   },
   styles: {
     global: () => ({

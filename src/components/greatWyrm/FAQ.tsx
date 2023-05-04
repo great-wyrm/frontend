@@ -33,7 +33,7 @@ const FAQ = ({...props} : {[x: string]: any }) => {
     </FAQItem>
     <FAQItem heading="What blockchain is the game on?" fontSize={{base: '16px', sm: '18px'}} fontFamily='Inter' lineHeight='140%'>
       <Text>
-        The game is currently ran on the Wyrm chain. <Link href='https://guide.greatwyrm.xyz/beginners-rulebook/first-time-setup/the-wyrm-chain' target='_blank'>
+        The game is currently run on the Wyrm chain. <Link href='https://guide.greatwyrm.xyz/beginners-rulebook/first-time-setup/the-wyrm-chain' target='_blank'>
           Here</Link>&apos;s how to add it to MetaMask. There are no gas fees on Wyrm chain at 
         the moment. <br /><br />
       </Text>

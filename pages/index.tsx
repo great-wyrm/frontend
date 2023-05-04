@@ -37,7 +37,7 @@ const tutorial = [
   'Look out for announcements about game sessions on Discord.',
   'Role play as your character.',
   'Choose your path in Garden of Forking Paths.',
-  'Gain your rewards after the game session is over. ',
+  'Gain rewards as you play.',
 ]
 
 export default function Home() {

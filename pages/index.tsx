@@ -252,7 +252,7 @@ export default function Home() {
             <Link href='https://greatwyrm.xyz/voting/?contractAddress=0x42A8E82253CD19EF8274D48fC0bC89cdf1B4425b&sessionId=1' target='_blank'>
               The Discovery</Link><br /><br />
             <b>Short sessions</b> are games built around a single decision. Examples of this are
-             the <Link href='https://docs.google.com/document/d/1nvbUH8OL5Kog-HhM4kxNaXhJ_cwFjR21H5dsyR0ghpw/edit' target='_blank'>Reda Games</Link>, the 
+             the <Link href='https://guide.greatwyrm.xyz/players-handbook/types-of-games/the-reda-games' target='_blank'>Reda Games</Link>, the 
             Garden of Forking Paths, upcoming boss fights, and other game modes that are currently in the works. 
             We often use them to test new mechanics and types of gameplay.<br /><br />
             You can join these sessions through Discord and you’ll be able to create your own sessions in the future.

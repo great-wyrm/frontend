@@ -24,7 +24,7 @@ const FAQ = ({...props} : {[x: string]: any }) => {
     </FAQItem>
     <FAQItem heading="How to create a character?" fontSize={{base: '16px', sm: '18px'}} fontFamily='Inter' lineHeight='140%'>
       <Text>
-        You can create your character's backstory and avatar yourself or through a commission. After you join our <Link href='https://discord.gg/knBnttUPqH' target='_blank'>Discord</Link> , you 
+        You can create your character&apos;s backstory and avatar yourself or through a commission. After you join our <Link href='https://discord.gg/knBnttUPqH' target='_blank'>Discord</Link> , you 
         can request a character token to represent your character on-chain.<br /><br />
       </Text>
       <Text>
@@ -34,7 +34,7 @@ const FAQ = ({...props} : {[x: string]: any }) => {
     <FAQItem heading="What blockchain is the game on?" fontSize={{base: '16px', sm: '18px'}} fontFamily='Inter' lineHeight='140%'>
       <Text>
         The game is currently ran on the Wyrm chain. <Link href='https://guide.greatwyrm.xyz/beginners-rulebook/first-time-setup/the-wyrm-chain' target='_blank'>
-          Here</Link>'s how to add it to MetaMask. There are no gas fees on Wyrm chain at 
+          Here</Link>&apos;s how to add it to MetaMask. There are no gas fees on Wyrm chain at 
         the moment. <br /><br />
       </Text>
       <Text>
@@ -63,7 +63,7 @@ const FAQ = ({...props} : {[x: string]: any }) => {
     <FAQItem heading="I like to read, where can I read the full Great Wyrm lore and backstory?" fontSize={{base: '16px', sm: '18px'}} fontFamily='Inter' lineHeight='140%'>
       <Text>
         See <Link href='https://docs.google.com/document/d/1QYr_CSWd8MO-7BiOVjRaWa_XRKTwipzpAc7kJ0LFjKQ/edit#heading=h.cev31t8bg92p' target='_blank'>
-          the Handbook</Link> and <Link href='https://docs.google.com/document/d/1sjvsMk52Cl2Upd4DJcPqMYCYhxT4rCzdqnUAm6w237I/edit#heading=h.4gw22f5xe8o1' target='_blank'>
+          the Handbook</Link> and <Link href='https://guide.greatwyrm.xyz/the-lore/settings' target='_blank'>
             World Lore.</Link>
       </Text>
     </FAQItem>

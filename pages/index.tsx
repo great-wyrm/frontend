@@ -142,7 +142,7 @@ export default function Home() {
           In Great Wyrm’s first act, players explore Reda and its neighboring lands, battle ravenous beasts, and forge alliances with monarchs,
            usurpers, rebels, and guilds. As they play, they  accrue in-world assets, such as experience, influence, items, and favor, that allow
             them to develop their characters and increase their riches.</Text>
-          <Link href='https://docs.google.com/document/d/1QYr_CSWd8MO-7BiOVjRaWa_XRKTwipzpAc7kJ0LFjKQ' target='_blank'>
+          <Link href='https://guide.greatwyrm.xyz/players-handbook/what-is-great-wyrm' target='_blank'>
           <Button
             variant='wyrmButton'
             color='white'

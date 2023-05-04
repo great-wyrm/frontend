@@ -63,7 +63,7 @@ const FAQ = ({...props} : {[x: string]: any }) => {
     <FAQItem heading="I like to read, where can I read the full Great Wyrm lore and backstory?" fontSize={{base: '16px', sm: '18px'}} fontFamily='Inter' lineHeight='140%'>
       <Text>
         See <Link href='https://docs.google.com/document/d/1QYr_CSWd8MO-7BiOVjRaWa_XRKTwipzpAc7kJ0LFjKQ/edit#heading=h.cev31t8bg92p' target='_blank'>
-          the Handbook</Link> and <Link href='https://docs.google.com/document/d/1sjvsMk52Cl2Upd4DJcPqMYCYhxT4rCzdqnUAm6w237I/edit#heading=h.4gw22f5xe8o1' target='_blank'>
+          the Handbook</Link> and <Link href='https://guide.greatwyrm.xyz/the-lore/settings' target='_blank'>
             World Lore.</Link>
       </Text>
     </FAQItem>

@@ -164,16 +164,19 @@ export default function Home() {
             There has never been magic in the muddy alleys of Kalash before.<br /><br />
             Whether this wyrmling means hope or destruction for the Kingdom of Reda, right now its fate is in the hands of a few unlikely heroes–and in yours!
           </Text>
-          <Link href='https://greatwyrm.xyz/voting/?contractAddress=0x42A8E82253CD19EF8274D48fC0bC89cdf1B4425b&sessionId=1' target='_blank'>
-          <Button
-            variant='wyrmButton'
-            color='white'
-            bg='#EB8C6A'
-            _hover={{ bg: '#EAA88F' }}
-            mt={{base: '40px', sm: '60px'}}
+          <Link
+            href='https://greatwyrm.xyz/voting/?contractAddress=0x42A8E82253CD19EF8274D48fC0bC89cdf1B4425b&sessionId=1&stage=1'
+            target='_blank'
           >
-            Find out more
-          </Button>
+            <Button
+              variant='wyrmButton'
+              color='white'
+              bg='#EB8C6A'
+              _hover={{ bg: '#EAA88F' }}
+              mt={{ base: '40px', sm: '60px' }}
+            >
+              Find out more
+            </Button>
           </Link>
           <Box mt={{base: '80px', sm: '160px'}} borderRadius='15px' border='1px solid' borderColor='greatWyrm.frame' pt='54px' pb='0' w='100%'>
             <Image src={is1440View ? assets.card1Sm : assets.card1L} h={{ base: '346px', sm: '390px' }} minW='260px' mx='auto' />

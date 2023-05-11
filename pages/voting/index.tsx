@@ -86,7 +86,11 @@ const Voting = () => {
       selectPath(1)
     }
     if (sessionMetadata.data) {
-      setStage(Math.min(currentStage.data, sessionMetadata.data.stages.length))
+      if (Number(router.query['stage'])) {
+        setStage(Math.min(Number(router.query['stage']), sessionMetadata.data.stages.length))
+      } else {
+        setStage(Math.min(currentStage.data, sessionMetadata.data.stages.length))
+      }
     }
   }, [currentStage.data, sessionMetadata.data])
 

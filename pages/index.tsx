@@ -14,18 +14,18 @@ const assets = {
   coverSm: `${AWS_ASSETS_PATH}/great-wyrm-cover-sm.png`,
   coverMd: `${AWS_ASSETS_PATH}/great-wyrm-cover-md.png`,
   logo: `${AWS_ASSETS_PATH}/great-wyrm-logo.png`,
-  card1Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-1-sm.png`,
-  card1L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-1-l.png`,
-  card2Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-2-sm.png`,
-  card2L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-2-l.png`,
-  card3Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-3-sm.png`,
-  card3L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-3-l.png`,
-  card4Sm: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-4-sm.png`,
-  card4L: `${AWS_ASSETS_PATH}/great-wyrm-landing/gw-card-4-l.png`,
-  moonLogo: `${AWS_ASSETS_PATH}/great-wyrm-landing/moonstream-logo.png`,
-  calderaLogo: `${AWS_ASSETS_PATH}/great-wyrm-landing/caldera-logo.png`,
-  pastStages: `${AWS_ASSETS_PATH}/great-wyrm-landing/past-stages.png`,
-  ogLogo: `https://s3.amazonaws.com/static.simiotics.com/play/minigames/great-wyrm-landing/op-logo-white1.png`,
+  card1Sm: `${AWS_ASSETS_PATH}/gw-card-1-sm.png`,
+  card1L: `${AWS_ASSETS_PATH}/gw-card-1-l.png`,
+  card2Sm: `${AWS_ASSETS_PATH}/gw-card-2-sm.png`,
+  card2L: `${AWS_ASSETS_PATH}/gw-card-2-l.png`,
+  card3Sm: `${AWS_ASSETS_PATH}/gw-card-3-sm.png`,
+  card3L: `${AWS_ASSETS_PATH}/gw-card-3-l.png`,
+  card4Sm: `${AWS_ASSETS_PATH}/gw-card-4-sm.png`,
+  card4L: `${AWS_ASSETS_PATH}/gw-card-4-l.png`,
+  moonLogo: `${AWS_ASSETS_PATH}/moonstream-logo.png`,
+  calderaLogo: `${AWS_ASSETS_PATH}/caldera-logo.png`,
+  pastStages: `${AWS_ASSETS_PATH}/past-stages.png`,
+  ogLogo: `${AWS_ASSETS_PATH}/op-logo-white1.png`,
 }
 
 const gradient =
@@ -164,16 +164,19 @@ export default function Home() {
             There has never been magic in the muddy alleys of Kalash before.<br /><br />
             Whether this wyrmling means hope or destruction for the Kingdom of Reda, right now its fate is in the hands of a few unlikely heroes–and in yours!
           </Text>
-          <Link href='https://greatwyrm.xyz/voting/?contractAddress=0x42A8E82253CD19EF8274D48fC0bC89cdf1B4425b&sessionId=1' target='_blank'>
-          <Button
-            variant='wyrmButton'
-            color='white'
-            bg='#EB8C6A'
-            _hover={{ bg: '#EAA88F' }}
-            mt={{base: '40px', sm: '60px'}}
+          <Link
+            href='https://greatwyrm.xyz/voting/?contractAddress=0x42A8E82253CD19EF8274D48fC0bC89cdf1B4425b&sessionId=1&stage=1'
+            target='_blank'
           >
-            Find out more
-          </Button>
+            <Button
+              variant='wyrmButton'
+              color='white'
+              bg='#EB8C6A'
+              _hover={{ bg: '#EAA88F' }}
+              mt={{ base: '40px', sm: '60px' }}
+            >
+              Find out more
+            </Button>
           </Link>
           <Box mt={{base: '80px', sm: '160px'}} borderRadius='15px' border='1px solid' borderColor='greatWyrm.frame' pt='54px' pb='0' w='100%'>
             <Image src={is1440View ? assets.card1Sm : assets.card1L} h={{ base: '346px', sm: '390px' }} minW='260px' mx='auto' />

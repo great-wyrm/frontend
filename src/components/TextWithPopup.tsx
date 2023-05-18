@@ -56,13 +56,28 @@ const TextWithPopup = ({
       </ReactMarkdown>
 
       {shortText && (
-        <Text mt='-10px' w='fit-content' color='#F56646' fontWeight='700' fontSize='12px' onClick={onOpen} cursor='pointer'>
+        <Text
+          mt='-10px'
+          w='fit-content'
+          color='#F56646'
+          fontWeight='700'
+          fontSize='12px'
+          onClick={onOpen}
+          cursor='pointer'
+        >
           Read More
         </Text>
       )}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bg='#1A1D22' border='1px solid white' borderRadius='20px' textColor='white' mx='15px' maxW='500px'>
+        <ModalContent
+          bg='#1A1D22'
+          border='1px solid white'
+          borderRadius='20px'
+          textColor='white'
+          mx='15px'
+          maxW='500px'
+        >
           <ModalHeader fontFamily='Space Grotesk' fontSize='18px' fontWeight='700'>
             {title}
           </ModalHeader>

@@ -14,15 +14,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-          {/* <!-- Google tag (gtag.js) --> */}
+      {/* <!-- Google tag (gtag.js) --> */}
       <Script
-        strategy="afterInteractive"
-        id="ga-script-1"
-        src={"https://www.googletagmanager.com/gtag/js?id=G-2CJ17WKWM7"}
+        strategy='afterInteractive'
+        id='ga-script-1'
+        src={'https://www.googletagmanager.com/gtag/js?id=G-2CJ17WKWM7'}
       ></Script>
       <Script
-        id="ga-script-2"
-        strategy="afterInteractive"
+        id='ga-script-2'
+        strategy='afterInteractive'
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -34,13 +34,13 @@ export default function App({ Component, pageProps }: AppProps) {
           `,
         }}
       />
-    <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <GofpProvider>
-          <Component {...pageProps} />
-        </GofpProvider>
-      </QueryClientProvider>
-    </ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <GofpProvider>
+            <Component {...pageProps} />
+          </GofpProvider>
+        </QueryClientProvider>
+      </ChakraProvider>
     </>
   )
 }

@@ -87,7 +87,8 @@ export const useGofpContract = ({
     async () => {
       const answers: number[] = []
       console.log('correct paths query')
-      if (gardenContractAddress == ZERO_ADDRESS || sessionId < 1 || !currentStage.data || currentStage.data <= 1) return answers
+      if (gardenContractAddress == ZERO_ADDRESS || sessionId < 1 || !currentStage.data || currentStage.data <= 1)
+        return answers
 
       const gardenContract: any = new web3ctx.web3.eth.Contract(GardenABI) as any as GardenABIType
       gardenContract.options.address = gardenContractAddress
@@ -213,9 +214,11 @@ export const useGofpContract = ({
 
   const choosePath = useMutation<unknown, unknown, ChoosePathData, unknown>(
     (vars: ChoosePathData) => {
-      return gardenContract.methods.chooseCurrentStagePaths(sessionId, vars.tokenIds, Array(vars.tokenIds.length).fill(vars.path)).send({
-        from: web3ctx.account,
-      })
+      return gardenContract.methods
+        .chooseCurrentStagePaths(sessionId, vars.tokenIds, Array(vars.tokenIds.length).fill(vars.path))
+        .send({
+          from: web3ctx.account,
+        })
     },
     {
       onSuccess: () => {

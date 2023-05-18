@@ -21,37 +21,39 @@ export const getTerminusFacetState = (ctx: MoonstreamWeb3ProviderInterface, term
   }
 }
 
-export const getTerminusFacetPoolState = (ctx: MoonstreamWeb3ProviderInterface, address: string, poolId: string) => async () => {
-  const terminusFacet = new ctx.web3.eth.Contract(terminusAbi) as any as TerminusFacet
-  terminusFacet.options.address = address
+export const getTerminusFacetPoolState =
+  (ctx: MoonstreamWeb3ProviderInterface, address: string, poolId: string) => async () => {
+    const terminusFacet = new ctx.web3.eth.Contract(terminusAbi) as any as TerminusFacet
+    terminusFacet.options.address = address
 
-  const controller = await terminusFacet.methods.terminusPoolController(poolId).call()
-  const supply = await terminusFacet.methods.terminusPoolSupply(poolId).call()
-  const uri = await terminusFacet.methods.uri(poolId).call()
-  const isBurnable = await terminusFacet.methods.poolIsBurnable(poolId).call()
-  const isTransferable = await terminusFacet.methods.poolIsTransferable(poolId).call()
+    const controller = await terminusFacet.methods.terminusPoolController(poolId).call()
+    const supply = await terminusFacet.methods.terminusPoolSupply(poolId).call()
+    const uri = await terminusFacet.methods.uri(poolId).call()
+    const isBurnable = await terminusFacet.methods.poolIsBurnable(poolId).call()
+    const isTransferable = await terminusFacet.methods.poolIsTransferable(poolId).call()
 
-  const capacity = await terminusFacet.methods.terminusPoolCapacity(poolId).call()
+    const capacity = await terminusFacet.methods.terminusPoolCapacity(poolId).call()
 
-  let accountBalance: any = '0'
+    let accountBalance: any = '0'
 
-  if (ctx.account) {
-    accountBalance = await terminusFacet.methods.balanceOf(ctx.account, poolId).call()
+    if (ctx.account) {
+      accountBalance = await terminusFacet.methods.balanceOf(ctx.account, poolId).call()
+    }
+
+    return {
+      controller,
+      supply,
+      uri,
+      capacity,
+      accountBalance,
+      isBurnable,
+      isTransferable,
+    }
   }
-
-  return {
-    controller,
-    supply,
-    uri,
-    capacity,
-    accountBalance,
-    isBurnable,
-    isTransferable,
-  }
-}
 
 export const balanceOfAddress =
-  (userAddress: string, terminusAddress: string, terminusPoolId: number, ctx: MoonstreamWeb3ProviderInterface) => () => {
+  (userAddress: string, terminusAddress: string, terminusPoolId: number, ctx: MoonstreamWeb3ProviderInterface) =>
+  () => {
     const terminusFacet = new ctx.web3.eth.Contract(terminusAbi) as any as TerminusFacet
     terminusFacet.options.address = terminusAddress
     return terminusFacet.methods.balanceOf(userAddress, terminusPoolId).call()

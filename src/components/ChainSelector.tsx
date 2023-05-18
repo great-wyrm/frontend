@@ -44,11 +44,7 @@ const ChainSelector = () => {
       >
         {web3Provider.targetChain?.name ?? 'Chain selector'}
       </MenuButton>
-      <MenuList
-        color='white'
-        borderRadius='30px'
-        border='1px solid white'
-      >
+      <MenuList color='white' borderRadius='30px' border='1px solid white'>
         <MenuItem
           onClick={() => {
             web3Provider.changeChain('ethereum')

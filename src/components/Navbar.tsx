@@ -61,7 +61,9 @@ const Navbar = ({ home, ...props }: { home?: boolean; [x: string]: any }) => {
                     endColor='blue.500'
                     p={0}
                   >
-                    {isSmallView ? `${web3Provider.account.slice(0, 6)}...${web3Provider.account.slice(-4)}` : web3Provider.account}
+                    {isSmallView
+                      ? `${web3Provider.account.slice(0, 6)}...${web3Provider.account.slice(-4)}`
+                      : web3Provider.account}
                   </Skeleton>
                 </Badge>
               </code>

@@ -109,8 +109,8 @@ const colors = {
   },
 
   greatWyrm: {
-    frame: '#FCE5DD'
-  }
+    frame: '#FCE5DD',
+  },
 }
 
 export default colors

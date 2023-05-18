@@ -1,4 +1,3 @@
-
 const Menu = {
   parts: ['button', 'list', 'item'],
   baseStyle: () => {

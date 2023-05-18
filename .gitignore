@@ -208,6 +208,7 @@ sketch
 
 # Custom
 .secrets/
+.vscode/
 prod.env
 dev.env
 test.env

@@ -5,7 +5,12 @@ const useMoonToast = () => {
   const chakraToast = useToast()
 
   const toast = useCallback(
-    (message: string, type: 'info' | 'warning' | 'success' | 'error' | 'loading' | undefined, duration = 3000, title?: string) => {
+    (
+      message: string,
+      type: 'info' | 'warning' | 'success' | 'error' | 'loading' | undefined,
+      duration = 3000,
+      title?: string,
+    ) => {
       const colors = { info: 'white', warning: 'yellow', success: 'white', error: '#F56646', loading: 'white' }
       const userTitle = title ?? type
 

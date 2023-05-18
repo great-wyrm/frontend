@@ -4,7 +4,11 @@ import axios, { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { v4 as uuidv4 } from 'uuid'
-import { GREAT_WYRM_VOTES_HUMBUG_TOKEN, MOONSTREAM_S3_PUBLIC_DATA_BUCKET, MOONSTREAM_S3_PUBLIC_DATA_BUCKET_PREFIX } from '../constants'
+import {
+  GREAT_WYRM_VOTES_HUMBUG_TOKEN,
+  MOONSTREAM_S3_PUBLIC_DATA_BUCKET,
+  MOONSTREAM_S3_PUBLIC_DATA_BUCKET_PREFIX,
+} from '../constants'
 
 import useGofp from '../contexts/GoFPContext'
 import hookCommon from '../hooks/hookCommon'
@@ -47,7 +51,12 @@ const VotingStagePanel = ({
       const data = {
         title: 'Vote',
         content: 'Great Wyrm vote',
-        tags: [`client_id:${uuidv4()}`, `stage:${currentStage}`, `game_session_id:${sessionId}`, `path:${selectedPath}`],
+        tags: [
+          `client_id:${uuidv4()}`,
+          `stage:${currentStage}`,
+          `game_session_id:${sessionId}`,
+          `path:${selectedPath}`,
+        ],
       }
       return postData('https://spire.bugout.dev/humbug/reports?sync=true', data)
     },
@@ -65,11 +74,15 @@ const VotingStagePanel = ({
     const res = await axios.get(
       `${MOONSTREAM_S3_PUBLIC_DATA_BUCKET}/${MOONSTREAM_S3_PUBLIC_DATA_BUCKET_PREFIX}/great_wyrm/votes/game_sessions.json`,
     )
-    const session = res.data.find((session: { game_session_id: string }) => session.game_session_id === String(sessionId))
+    const session = res.data.find(
+      (session: { game_session_id: string }) => session.game_session_id === String(sessionId),
+    )
     if (!session) {
       return []
     }
-    const stageData = session.stages.find((stage: { stage: string; paths: { path: string }[] }) => stage.stage === String(stageQ))
+    const stageData = session.stages.find(
+      (stage: { stage: string; paths: { path: string }[] }) => stage.stage === String(stageQ),
+    )
     if (!stageData) {
       return []
     }
@@ -143,7 +156,9 @@ const VotingStagePanel = ({
               pathIdx={idx}
               pathId={generatePathId(stage - 1, idx)}
               votes={votes.data && votes.data[idx] ? votes.data[idx] : 0}
-              winner={votes.data && votes.data[idx] ? votes.data[idx] === Math.max(...votes.data.filter((n) => n)) : false}
+              winner={
+                votes.data && votes.data[idx] ? votes.data[idx] === Math.max(...votes.data.filter((n) => n)) : false
+              }
             />
           )
         })}

@@ -12,10 +12,10 @@ import VotingStagePanel from '../../src/components/VotingStagePanel'
 import { hookCommon } from '../../src/hooks'
 import { queryPublic } from '../../src/utils/http'
 import { SessionMetadata } from '../../src/components/GoFPTypes'
-import TextWithPopup from "../../src/components/TextWithPopup";
-import { AWS_ASSETS_PATH, CONSTELLATION_GREAT_WYRM_JSON_RPC_URL } from "../../src/constants";
+import TextWithPopup from '../../src/components/TextWithPopup'
+import { AWS_ASSETS_PATH, CONSTELLATION_GREAT_WYRM_JSON_RPC_URL } from '../../src/constants'
 
-const GardenABI = require('../../src/web3/abi/GoFPABI.json');
+const GardenABI = require('../../src/web3/abi/GoFPABI.json')
 import { GOFPFacet as GardenABIType } from '../../src/web3/contracts/types/GOFPFacet'
 import Web3 from 'web3'
 import useMoonToast from '../../src/components/useMoonToast'
@@ -39,7 +39,7 @@ const Voting = () => {
     return queryPublic(uri)
   }
 
-  const { selectedPath, selectPath } = useGofp()
+  const { selectPath } = useGofp()
 
   const changeStage = (newStage: number) => {
     selectPath(1)
@@ -49,10 +49,8 @@ const Voting = () => {
   const currentStage = useQuery(
     ['get_current_stage', contractAddress, sessionId],
     async () => {
-      const web3 = new Web3(new Web3.providers.HttpProvider(CONSTELLATION_GREAT_WYRM_JSON_RPC_URL))    
-      const gardenContract: any = new web3.eth.Contract(
-        GardenABI
-      ) as any as GardenABIType
+      const web3 = new Web3(new Web3.providers.HttpProvider(CONSTELLATION_GREAT_WYRM_JSON_RPC_URL))
+      const gardenContract: any = new web3.eth.Contract(GardenABI) as any as GardenABIType
       gardenContract.options.address = contractAddress
       return gardenContract.methods.getCurrentStage(sessionId).call()
     },
@@ -66,10 +64,8 @@ const Voting = () => {
   const sessionMetadata = useQuery(
     ['get_metadata', contractAddress, sessionId],
     async () => {
-      const web3 = new Web3(new Web3.providers.HttpProvider(CONSTELLATION_GREAT_WYRM_JSON_RPC_URL))    
-      const gardenContract: any = new web3.eth.Contract(
-        GardenABI
-      ) as any as GardenABIType
+      const web3 = new Web3(new Web3.providers.HttpProvider(CONSTELLATION_GREAT_WYRM_JSON_RPC_URL))
+      const gardenContract: any = new web3.eth.Contract(GardenABI) as any as GardenABIType
       gardenContract.options.address = contractAddress
       const sessionInfo = await gardenContract.methods.getSession(sessionId).call()
       return fetchMetadataUri(sessionInfo[5]).then((res) => res.data as SessionMetadata)
@@ -110,7 +106,14 @@ const Voting = () => {
         <meta name='og:image' content={`${AWS_ASSETS_PATH}/great-wyrm-logo.png`} />
       </Head>
 
-      <Flex userSelect='none' direction='column' alignItems={{ base: '', sm: 'center' }} px='16px' justifyContent='center' minH='100vh'>
+      <Flex
+        userSelect='none'
+        direction='column'
+        alignItems={{ base: '', sm: 'center' }}
+        px='16px'
+        justifyContent='center'
+        minH='100vh'
+      >
         {sessionMetadata.isLoading && <Spinner />}
         {sessionMetadata.data && (
           <Flex direction='column' fontFamily='Space Grotesk' maxW={{ base: '720px', l: '1250' }}>
@@ -157,17 +160,27 @@ const Voting = () => {
                   </Flex>
                 </Flex>
                 {!isBaseView && !isLargeView && (
-                  <Flex direction='column' border='1px solid #4d4d4d' borderRadius='10px' p='15px' gap='10px' fontSize='12px' flex='1'>
+                  <Flex
+                    direction='column'
+                    border='1px solid #4d4d4d'
+                    borderRadius='10px'
+                    p='15px'
+                    gap='10px'
+                    fontSize='12px'
+                    flex='1'
+                  >
                     <Text fontWeight='700' fontSize='14px'>
                       About Great Wyrm
                     </Text>
                     <Text>
-                      Great Wyrm is the first fully decentralized RPG. It runs on the Garden of Forking Paths game mechanic. Great Wyrm is
-                      similar to choose-your-own-adventure gameplay, only in this case, there can be right and wrong choices. 
+                      Great Wyrm is the first fully decentralized RPG. It runs on the Garden of Forking Paths game
+                      mechanic. Great Wyrm is similar to choose-your-own-adventure gameplay, only in this case, there
+                      can be right and wrong choices. 
                     </Text>
                     <Text>
-                      You can create your own stories behind paths you choose. Form alliances based on the chosen paths. Try to persuade
-                      other people to join your alliance or trick them into choosing a different path that doesn’t lead anywhere good. 
+                      You can create your own stories behind paths you choose. Form alliances based on the chosen paths.
+                      Try to persuade other people to join your alliance or trick them into choosing a different path
+                      that doesn’t lead anywhere good. 
                     </Text>
                   </Flex>
                 )}
@@ -196,12 +209,14 @@ const Voting = () => {
                     About Great Wyrm
                   </Text>
                   <Text>
-                    Great Wyrm is the first fully decentralized RPG. It runs on the Garden of Forking Paths game mechanic. Great Wyrm is
-                    similar to choose-your-own-adventure gameplay, only in this case, there can be right and wrong choices. 
+                    Great Wyrm is the first fully decentralized RPG. It runs on the Garden of Forking Paths game
+                    mechanic. Great Wyrm is similar to choose-your-own-adventure gameplay, only in this case, there can
+                    be right and wrong choices. 
                   </Text>
                   <Text>
-                    You can create your own stories behind paths you choose. Form alliances based on the chosen paths. Try to persuade other
-                    people to join your alliance or trick them into choosing a different path that doesn’t lead anywhere good. 
+                    You can create your own stories behind paths you choose. Form alliances based on the chosen paths.
+                    Try to persuade other people to join your alliance or trick them into choosing a different path that
+                    doesn’t lead anywhere good. 
                   </Text>
                 </Flex>
               )}

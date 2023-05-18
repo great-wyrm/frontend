@@ -24,7 +24,9 @@ const Footer = () => {
         >
           <Image src={wordmark} alt='' w='200px' />
           <SocialButtons />
-          <Link textAlign='center' mt='-20px' w='fit-content' href='https://moonstream.to/privacy-policy'>Privacy policy</Link>
+          <Link textAlign='center' mt='-20px' w='fit-content' href='https://moonstream.to/privacy-policy'>
+            Privacy policy
+          </Link>
           <Link textAlign='center' mt='-40px' w='fit-content' href='https://moonstream.to/tos'>
             Terms of Service
           </Link>
@@ -42,7 +44,12 @@ const Footer = () => {
           p={['40px 22px', '40px 54px', '40px 54px']}
           borderTop='1px solid white'
         >
-          <Flex justifyContent='space-between' maxW={['', '', '', '', '1238px']} minW={['', '', '', '', '1238px']} flexShrink='0'>
+          <Flex
+            justifyContent='space-between'
+            maxW={['', '', '', '', '1238px']}
+            minW={['', '', '', '', '1238px']}
+            flexShrink='0'
+          >
             <Flex direction='column' justifyContent='space-between'>
               <Image src={wordmark} alt='' w='200px' />
               <Flex gap='20px'>
